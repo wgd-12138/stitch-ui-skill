@@ -1,30 +1,33 @@
 # stitch-ui
 
+English | [简体中文](README.zh-CN.md)
+
 [![GitHub stars](https://img.shields.io/github/stars/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/stargazers)
 [![GitHub license](https://img.shields.io/github/license/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/blob/main/LICENSE)
 [![Skill](https://img.shields.io/badge/skill-Claude%20%26%20Codex-ff7a45?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill)
 
 Turn Google Stitch ideas, screenshots, or exported markup into frontend pages that feel polished instead of generic.
 
-`stitch-ui` is a portable skill for Claude and Codex. Its job is simple:
+`stitch-ui` is a portable skill for Claude and Codex. It helps the model:
 
-- extract a compact visual brief first
-- rebuild the page with a real component library
-- force one more visual polish pass before stopping
+1. extract a compact visual brief first
+2. pick the right component-library strategy
+3. rebuild the page in reusable sections
+4. do one more visual polish pass before stopping
 
 That extra structure is what helps the result feel less like a default AI template.
 
-## Why people may like it
+## Why this is useful
 
 Most AI-generated frontend pages can run, but they often share the same problems:
 
-- too much generic SaaS styling
+- generic SaaS styling
 - weak typography
 - crowded spacing
 - random gradients and effects
-- exported markup that is hard to maintain
+- hard-to-maintain exported markup
 
-`stitch-ui` pushes the model to lock in:
+`stitch-ui` fixes that by forcing the model to lock in:
 
 - mood
 - typography direction
@@ -35,24 +38,49 @@ Most AI-generated frontend pages can run, but they often share the same problems
 
 before it starts writing code.
 
+## Showcase
+
+The point of this skill is not one specific aesthetic. It is the ability to keep different aesthetics intentional.
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Warm editorial landing page</strong><br>
+      Marketing / product homepage<br><br>
+      <img src="examples/desktop-preview.png" alt="Warm editorial landing page preview">
+    </td>
+    <td width="50%">
+      <strong>Dark analytics dashboard</strong><br>
+      High-contrast operations UI<br><br>
+      <img src="examples/dark-dashboard.png" alt="Dark analytics dashboard preview">
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Playful creator app</strong><br>
+      Mobile-first consumer product<br><br>
+      <img src="examples/playful-creator-app.png" alt="Playful creator app preview">
+    </td>
+    <td width="50%">
+      <strong>Enterprise pricing page</strong><br>
+      Quiet B2B decision-making surface<br><br>
+      <img src="examples/enterprise-pricing.png" alt="Enterprise pricing page preview">
+    </td>
+  </tr>
+</table>
+
+Mobile example from the editorial landing direction:
+
+![Mobile preview](examples/mobile-preview.png)
+
 ## What you get
 
 | Item | What it does |
 |---|---|
 | `stitch-ui/SKILL.md` | Main workflow and quality rules |
 | `stitch-ui/references/prompt-templates.md` | Ready-to-paste prompt templates |
-| Preview screenshots | Show the default visual direction |
-| Portable folder layout | Easy to drop into Claude or Codex |
-
-## Preview
-
-Desktop:
-
-![Desktop preview](examples/desktop-preview.png)
-
-Mobile:
-
-![Mobile preview](examples/mobile-preview.png)
+| `stitch-ui/agents/openai.yaml` | UI metadata for compatible skill surfaces |
+| `examples/` | Multiple screenshots across different scenes and visual systems |
 
 ## Install
 
@@ -161,29 +189,11 @@ This skill is intentionally strict about the order of operations:
 
 That means the model is not allowed to jump straight into "just make it pretty somehow."
 
-## Chinese quick start
+## Want the Chinese version?
 
-把 `stitch-ui` 目录复制到 Claude 或 Codex 的全局 `skills` 目录里，然后直接这样用：
+See:
 
-```text
-使用 stitch-ui skill，帮我做一个产品首页。
-技术栈：React + Tailwind
-组件库：shadcn/ui
-风格：克制、温暖、留白大
-避免：默认科技蓝模板风
-先提炼视觉简报，再写代码，最后做一轮视觉复盘。
-```
-
-## 中文说明
-
-这个 skill 适合两种情况：
-
-| 场景 | 用法 |
-|---|---|
-| 只有产品想法 | 先让 Claude 或 Codex 生成 Google Stitch 提示词，再生成落地页面提示词 |
-| 已经有 Stitch 图稿 | 直接按截图或结构重建成真实前端页面 |
-
-它的重点不是让模型“自由发挥审美”，而是先把审美规则收紧，再让代码去服从这些规则。
+- [README.zh-CN.md](README.zh-CN.md)
 
 ## License
 

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Dashboard Example</title>
+  <style>
+    :root {
+      --bg: #09111f;
+      --panel: rgba(12, 24, 44, 0.78);
+      --panel-strong: #0f1d35;
+      --line: rgba(138, 173, 244, 0.14);
+      --text: #eff5ff;
+      --muted: #8c9dbb;
+      --cyan: #72e6ff;
+      --lime: #c7ff6b;
+      --violet: #9d8cff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(114, 230, 255, 0.18), transparent 24%),
+        radial-gradient(circle at top right, rgba(157, 140, 255, 0.18), transparent 24%),
+        linear-gradient(180deg, #07101d 0%, #09111f 46%, #050b15 100%);
+      min-height: 100vh;
+    }
+
+    .shell {
+      width: min(1240px, calc(100% - 48px));
+      margin: 24px auto;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(6, 12, 24, 0.74);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.36);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brand { font-weight: 800; letter-spacing: 0.04em; }
+    .brand span { color: var(--cyan); }
+    .actions { display: flex; gap: 12px; color: var(--muted); }
+    .chip {
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 244px minmax(0, 1fr);
+      min-height: 900px;
+    }
+
+    aside {
+      padding: 24px 18px;
+      border-right: 1px solid rgba(255,255,255,0.05);
+      background: rgba(4, 10, 22, 0.68);
+    }
+
+    .nav-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .nav-item.active {
+      color: var(--text);
+      background: linear-gradient(135deg, rgba(114,230,255,0.14), rgba(157,140,255,0.14));
+      border: 1px solid rgba(114,230,255,0.2);
+    }
+
+    main { padding: 28px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(16, 31, 56, 0.82), rgba(11, 21, 40, 0.82));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 54px;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    p { margin: 0; color: var(--muted); line-height: 1.7; }
+    .pill {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #09111f;
+      background: var(--lime);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .stat strong { display: block; font-size: 28px; margin-bottom: 6px; }
+
+    .chart {
+      height: 100%;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .bars {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      align-items: end;
+      gap: 12px;
+      height: 190px;
+    }
+
+    .bar {
+      border-radius: 16px 16px 6px 6px;
+      background: linear-gradient(180deg, rgba(114,230,255,0.96), rgba(157,140,255,0.38));
+      box-shadow: 0 12px 24px rgba(114,230,255,0.14);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .mini-title {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .line-chart {
+      height: 120px;
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        radial-gradient(circle at 20% 20%, rgba(199,255,107,0.18), transparent 24%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .line-chart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+    .list { display: grid; gap: 12px; margin-top: 14px; }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+    }
+
+    .row strong { color: var(--text); font-size: 15px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="brand"><span>STITCH</span> OPS</div>
+      <div class="actions">
+        <div class="chip">AI Signals</div>
+        <div class="chip">Live Forecast</div>
+        <div class="chip">Export</div>
+      </div>
+    </div>
+    <div class="layout">
+      <aside>
+        <div class="nav-item active"><span>Command</span><span>01</span></div>
+        <div class="nav-item"><span>Attribution</span><span>02</span></div>
+        <div class="nav-item"><span>Demand</span><span>03</span></div>
+        <div class="nav-item"><span>Segments</span><span>04</span></div>
+        <div class="nav-item"><span>Models</span><span>05</span></div>
+      </aside>
+      <main>
+        <section class="hero">
+          <div class="card">
+            <div class="pill">Dark analytics dashboard</div>
+            <h1>High-signal operations for fast teams.</h1>
+            <p>One style direction for stitch-ui can be a deep, sharp, cinematic dashboard instead of a warm landing page. Same skill, totally different surface language.</p>
+            <div class="stats">
+              <div class="stat"><strong>+38%</strong><span>pipeline velocity</span></div>
+              <div class="stat"><strong>92</strong><span>priority alerts cleared</span></div>
+              <div class="stat"><strong>4.2x</strong><span>forecast confidence</span></div>
+            </div>
+          </div>
+          <div class="card chart">
+            <div class="mini-title">weekly model drift</div>
+            <div class="bars">
+              <div class="bar" style="height: 32%"></div>
+              <div class="bar" style="height: 52%"></div>
+              <div class="bar" style="height: 68%"></div>
+              <div class="bar" style="height: 46%"></div>
+              <div class="bar" style="height: 74%"></div>
+              <div class="bar" style="height: 92%"></div>
+              <div class="bar" style="height: 84%"></div>
+            </div>
+            <p>Color, density and geometry all shift to fit a high-contrast command center use case.</p>
+          </div>
+        </section>
+
+        <section class="grid">
+          <div class="card">
+            <div class="mini-title">throughput curve</div>
+            <div class="line-chart">
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                <polyline fill="none" stroke="#72e6ff" stroke-width="3" points="0,78 18,72 34,64 48,58 66,44 82,32 100,18"></polyline>
+                <polyline fill="none" stroke="#c7ff6b" stroke-width="3" points="0,84 16,80 34,74 52,66 70,54 88,48 100,42"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="card">
+            <div class="mini-title">top signals</div>
+            <div class="list">
+              <div class="row"><strong>Retention anomaly</strong><span>+18%</span></div>
+              <div class="row"><strong>Channel surge</strong><span>+11%</span></div>
+              <div class="row"><strong>Lead freshness</strong><span>+7%</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="mini-title">automation health</div>
+            <div class="list">
+              <div class="row"><strong>Data sync</strong><span>stable</span></div>
+              <div class="row"><strong>Routing AI</strong><span>learning</span></div>
+              <div class="row"><strong>Alerting</strong><span>live</span></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
