@@ -3,34 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enterprise Pricing Example</title>
+  <title>LedgerStack Pricing</title>
   <style>
     :root {
-      --bg: #f3f7f3;
+      --text: #17211b;
+      --muted: #67736a;
+      --line: rgba(23, 33, 27, 0.08);
+      --green: #218957;
+      --green-soft: rgba(33, 137, 87, 0.12);
       --surface: #ffffff;
-      --line: rgba(23, 31, 26, 0.08);
-      --text: #17201a;
-      --muted: #66726a;
-      --green: #1e8f5b;
-      --green-soft: rgba(30, 143, 91, 0.12);
     }
+
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Inter, system-ui, sans-serif;
+      font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(30,143,91,0.08), transparent 22%),
-        linear-gradient(180deg, #f8fbf8 0%, #f3f7f3 100%);
+        radial-gradient(circle at top left, rgba(33,137,87,0.08), transparent 24%),
+        linear-gradient(180deg, #fafcf9 0%, #f3f7f3 100%);
     }
-    .container { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
     .nav {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 22px 0;
     }
-    .brand { font-weight: 800; letter-spacing: 0.04em; }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
     .badge {
       display: inline-flex;
       padding: 10px 14px;
@@ -42,95 +52,134 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
+
     .hero {
-      padding: 34px 0 26px;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 26px;
       align-items: end;
+      padding: 34px 0 28px;
     }
+
     h1 {
       margin: 18px 0 14px;
-      font-size: 72px;
-      line-height: 0.92;
-      letter-spacing: -0.06em;
-      max-width: 10ch;
+      font-size: 76px;
+      line-height: 0.9;
+      letter-spacing: -0.07em;
+      max-width: 8ch;
     }
-    p { margin: 0; color: var(--muted); line-height: 1.8; }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.82;
+    }
+
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
       margin-top: 22px;
     }
+
     .stat {
       padding: 16px;
       border-radius: 20px;
-      background: rgba(255,255,255,0.8);
-      border: 1px solid rgba(23,31,26,0.06);
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(23,33,27,0.06);
+      box-shadow: 0 12px 28px rgba(51, 69, 55, 0.05);
     }
-    .stat strong { display:block; font-size: 28px; margin-bottom: 4px; }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 30px;
+    }
+
     .panel {
-      padding: 22px;
+      padding: 24px;
       border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,252,248,0.92));
-      border: 1px solid rgba(23,31,26,0.06);
-      box-shadow: 0 20px 50px rgba(47, 71, 55, 0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(249,252,249,0.96));
+      border: 1px solid rgba(23,33,27,0.06);
+      box-shadow: 0 18px 44px rgba(47, 69, 55, 0.08);
     }
-    .comparison {
+
+    .panel strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-      padding: 28px 0 34px;
+      padding: 22px 0 34px;
     }
-    .price-card {
+
+    .card {
       padding: 24px;
       border-radius: 30px;
       background: var(--surface);
       border: 1px solid var(--line);
-      box-shadow: 0 18px 40px rgba(47, 71, 55, 0.06);
+      box-shadow: 0 18px 40px rgba(45, 66, 53, 0.06);
     }
-    .price-card.featured {
-      border-color: rgba(30,143,91,0.22);
-      box-shadow: 0 28px 58px rgba(30,143,91,0.1);
+
+    .card.featured {
       transform: translateY(-6px);
+      border-color: rgba(33,137,87,0.2);
+      box-shadow: 0 26px 58px rgba(33,137,87,0.1);
     }
+
     .price {
       display: flex;
       align-items: end;
       gap: 8px;
-      margin: 16px 0;
+      margin: 18px 0 12px;
     }
-    .price strong { font-size: 54px; line-height: 0.9; }
-    .features { margin: 18px 0 24px; padding: 0; list-style: none; display: grid; gap: 12px; }
-    .features li { color: var(--muted); }
+
+    .price strong {
+      font-size: 58px;
+      line-height: 0.9;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 24px;
+      display: grid;
+      gap: 12px;
+      color: var(--muted);
+    }
+
     .cta {
       display: inline-flex;
       width: 100%;
       justify-content: center;
       padding: 16px 18px;
       border-radius: 18px;
-      font-weight: 800;
-      background: #18231c;
+      background: #17231b;
       color: white;
+      font-weight: 800;
     }
+
     .cta.alt {
-      background: linear-gradient(180deg, #1e8f5b, #176a44);
+      background: linear-gradient(180deg, #23915d, #1b7048);
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="nav">
-      <div class="brand">STITCH SCALE</div>
-      <div class="badge">Enterprise pricing page</div>
+      <div class="brand">LedgerStack</div>
+      <div class="badge">Enterprise pricing</div>
     </div>
 
     <section class="hero">
       <div>
-        <div class="badge">Clean B2B surface</div>
-        <h1>Different scene, different visual logic.</h1>
-        <p>stitch-ui is not limited to a hero-heavy marketing page. It can also steer a crisp, structured pricing page for enterprise buyers where trust and clarity matter more than personality overload.</p>
+        <div class="badge">Calm B2B surface</div>
+        <h1>Pricing built for trust, not noise.</h1>
+        <p>LedgerStack gives finance and operations teams one shared control plane for forecasting, approvals, and reporting. The pricing page stays quiet so the structure can do the selling.</p>
         <div class="stats">
           <div class="stat"><strong>14d</strong><span>pilot setup</span></div>
           <div class="stat"><strong>99.9%</strong><span>uptime SLA</span></div>
@@ -138,27 +187,28 @@
         </div>
       </div>
       <div class="panel">
-        <strong style="display:block; font-size: 28px; margin-bottom: 10px;">This style direction is quieter.</strong>
-        <p>Minimal green accents, cleaner typography and tighter pricing structure make the page feel more operational and procurement-friendly.</p>
+        <strong>Designed for procurement clarity.</strong>
+        <p>When the goal is enterprise trust, the page should feel ordered, readable, and deliberate. Fewer colors. Cleaner spacing. Stronger comparison logic.</p>
       </div>
     </section>
 
-    <section class="comparison">
-      <article class="price-card">
+    <section class="grid">
+      <article class="card">
         <div class="badge">Starter</div>
         <div class="price"><strong>$49</strong><span>/ seat</span></div>
-        <p>For small teams validating a new workflow.</p>
+        <p>For smaller teams building a reliable finance workflow.</p>
         <ul class="features">
-          <li>Visual brief workflow</li>
-          <li>Prompt templates</li>
+          <li>Workflow orchestration</li>
+          <li>Prompt-backed reporting</li>
           <li>Basic design QA</li>
         </ul>
         <div class="cta">Start small</div>
       </article>
-      <article class="price-card featured">
+
+      <article class="card featured">
         <div class="badge">Growth</div>
         <div class="price"><strong>$129</strong><span>/ seat</span></div>
-        <p>For product teams shipping polished surfaces weekly.</p>
+        <p>For product and finance teams shipping polished internal systems weekly.</p>
         <ul class="features">
           <li>Multi-page generation</li>
           <li>Component-library guidance</li>
@@ -166,14 +216,15 @@
         </ul>
         <div class="cta alt">Choose growth</div>
       </article>
-      <article class="price-card">
+
+      <article class="card">
         <div class="badge">Enterprise</div>
         <div class="price"><strong>Custom</strong><span></span></div>
-        <p>For larger organizations that need governance and consistency.</p>
+        <p>For larger organizations needing governance, consistency, and rollout support.</p>
         <ul class="features">
           <li>Internal UI standards</li>
-          <li>Role-specific prompts</li>
-          <li>Scalable rollout</li>
+          <li>Role-specific prompt systems</li>
+          <li>Scalable rollout support</li>
         </ul>
         <div class="cta">Talk to sales</div>
       </article>

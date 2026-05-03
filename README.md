@@ -28,27 +28,33 @@ Most AI-generated pages fail in the same way:
 
 That extra reasoning step is what gives the output more range.
 
-## What's new in the showcase
+## Why people star this
 
-- Scene-first homepage instead of a flat image wall
-- Five distinct examples with different layout logic
-- Mobile, dashboard, marketing, pricing, and docs workspace coverage
-- English and Chinese landing pages
-- Reference-inspired prompt recipes based on admired public design benchmarks
+- it teaches a repeatable way to make AI-generated pages look better
+- it covers multiple product surfaces instead of one homepage formula
+- it includes prompt recipes, examples, and visual logic in one place
+- it helps teams learn how to reference admired public design without blindly copying it
+
+## Who this is for
+
+- people using Claude or Codex to build frontend pages
+- designers who want clearer prompt structure for Google Stitch
+- developers who can ship code but struggle to get polished visual output
+- teams that want reusable design prompting patterns instead of one-off lucky generations
 
 ## Scene system at a glance
 
 | Scene | Layout archetype | Device emphasis | Visual direction | What it proves |
 |---|---|---|---|---|
-| Warm editorial landing page | Hero-first marketing layout | Desktop + mobile | warm, spacious, premium | strong homepage storytelling |
-| Dark analytics dashboard | Dense control surface | Desktop | high-contrast, data-first | dashboards do not need landing-page structure |
-| Playful creator app | stacked app feed | Mobile-first | bright, soft, energetic | consumer mobile rhythm |
-| Enterprise pricing page | comparison grid | Desktop | quiet, structured, B2B | calm decision-page design |
-| Docs workspace | three-pane knowledge tool | Desktop | text-first, editorial, practical | research and documentation UIs |
+| Stripe / Framer-inspired premium homepage | Hero-first marketing layout | Desktop + mobile | warm, spacious, premium | strong homepage storytelling |
+| Linear-inspired dark analytics dashboard | Dense control surface | Desktop | high-contrast, data-first | dashboards do not need landing-page structure |
+| Framer-inspired creator mobile app | stacked app feed | Mobile-first | bright, soft, energetic | consumer mobile rhythm |
+| Calm enterprise pricing page | comparison grid | Desktop | quiet, structured, B2B | calm decision-page design |
+| Notion-inspired docs workspace | three-pane knowledge tool | Desktop | text-first, editorial, practical | research and documentation UIs |
 
 ## Showcase by scene
 
-### 1. Warm editorial landing page
+### 1. Stripe / Framer-inspired premium homepage
 
 Best for product homepages and marketing sites.
 
@@ -59,7 +65,7 @@ Best for product homepages and marketing sites.
 
 ![Warm editorial landing page](examples/desktop-preview.png)
 
-### 2. Dark analytics dashboard
+### 2. Linear-inspired dark analytics dashboard
 
 Best for operations tools and command-center UIs.
 
@@ -70,7 +76,7 @@ Best for operations tools and command-center UIs.
 
 ![Dark analytics dashboard](examples/dark-dashboard.png)
 
-### 3. Playful creator app
+### 3. Framer-inspired creator mobile app
 
 Best for mobile-first consumer products.
 
@@ -92,7 +98,7 @@ Best for B2B decision pages.
 
 ![Enterprise pricing page](examples/enterprise-pricing.png)
 
-### 5. Docs workspace
+### 5. Notion-inspired docs workspace
 
 Best for documentation, knowledge bases, and research tools.
 

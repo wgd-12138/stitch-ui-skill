@@ -3,187 +3,227 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Playful Creator App Example</title>
+  <title>Halo Studio Mobile</title>
   <style>
     :root {
-      --bg: #fff7f0;
-      --text: #1f2041;
-      --muted: #6d6f8f;
-      --pink: #ff6fb5;
-      --orange: #ff9b54;
-      --yellow: #ffd86b;
-      --card: rgba(255,255,255,0.84);
+      --text: #20224d;
+      --muted: #66698d;
+      --pink: #ff6cab;
+      --orange: #ff9a56;
+      --yellow: #ffd871;
+      --card: rgba(255,255,255,0.86);
     }
+
     * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "Inter", system-ui, sans-serif;
+      font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(255, 111, 181, 0.18), transparent 24%),
-        radial-gradient(circle at top right, rgba(255, 216, 107, 0.22), transparent 28%),
-        linear-gradient(180deg, #fff7f0 0%, #fff1f7 100%);
+        radial-gradient(circle at top left, rgba(255,108,171,0.18), transparent 24%),
+        radial-gradient(circle at top right, rgba(255,216,113,0.22), transparent 28%),
+        linear-gradient(180deg, #fff7f0 0%, #fff2f8 100%);
     }
+
     .phone {
       width: 430px;
       margin: 24px auto;
       padding: 18px;
       border-radius: 44px;
-      background: rgba(255,255,255,0.54);
-      border: 1px solid rgba(255,255,255,0.6);
-      box-shadow: 0 34px 70px rgba(145, 82, 123, 0.18);
+      background: rgba(255,255,255,0.56);
+      border: 1px solid rgba(255,255,255,0.64);
+      box-shadow: 0 34px 72px rgba(157, 89, 127, 0.16);
     }
+
     .screen {
+      min-height: 860px;
+      padding: 24px;
       border-radius: 32px;
       overflow: hidden;
-      padding: 24px;
       background:
-        radial-gradient(circle at top right, rgba(255, 111, 181, 0.22), transparent 26%),
-        linear-gradient(180deg, #fffdfd 0%, #fff8f2 100%);
-      min-height: 860px;
+        radial-gradient(circle at top right, rgba(255,108,171,0.18), transparent 28%),
+        linear-gradient(180deg, #fffdfd 0%, #fff7f1 100%);
     }
-    .row { display: flex; justify-content: space-between; align-items: center; }
+
+    .row { display: flex; align-items: center; justify-content: space-between; }
+
     .badge {
       display: inline-flex;
       padding: 10px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.72);
+      background: rgba(255,255,255,0.74);
       color: var(--muted);
       font-weight: 700;
       font-size: 13px;
-      box-shadow: 0 12px 28px rgba(255, 111, 181, 0.08);
+      box-shadow: 0 12px 26px rgba(255,108,171,0.08);
     }
+
     h1 {
-      font-size: 48px;
-      line-height: 0.95;
-      letter-spacing: -0.05em;
       margin: 18px 0 12px;
+      font-size: 50px;
+      line-height: 0.93;
+      letter-spacing: -0.06em;
     }
-    p { margin: 0; color: var(--muted); line-height: 1.75; }
+
+    p { margin: 0; color: var(--muted); line-height: 1.72; }
+
     .hero {
-      padding: 22px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, rgba(255,111,181,0.88), rgba(255,155,84,0.92));
-      color: white;
       margin-top: 24px;
-      box-shadow: 0 22px 40px rgba(255, 111, 181, 0.24);
+      padding: 24px;
+      border-radius: 30px;
+      color: white;
+      background: linear-gradient(135deg, #ff69ac, #ff9b56 72%);
+      box-shadow: 0 24px 44px rgba(255,108,171,0.24);
     }
-    .hero p { color: rgba(255,255,255,0.84); }
-    .hero .earn {
+
+    .hero p { color: rgba(255,255,255,0.86); }
+
+    .hero h2 {
+      margin: 12px 0 10px;
+      font-size: 38px;
+      line-height: 0.95;
+    }
+
+    .cta-chip {
       margin-top: 18px;
       display: inline-flex;
-      gap: 10px;
-      align-items: center;
-      padding: 12px 14px;
+      padding: 12px 15px;
       border-radius: 18px;
-      background: rgba(255,255,255,0.16);
-      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
       font-weight: 700;
     }
-    .cards {
+
+    .stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-top: 18px;
     }
-    .card {
+
+    .stat {
       padding: 18px;
       border-radius: 28px;
       background: var(--card);
-      border: 1px solid rgba(255,255,255,0.72);
-      box-shadow: 0 16px 36px rgba(85, 64, 92, 0.08);
+      border: 1px solid rgba(255,255,255,0.74);
+      box-shadow: 0 16px 34px rgba(92, 72, 104, 0.08);
     }
-    .card strong { display: block; font-size: 26px; margin-bottom: 6px; }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 30px;
+    }
+
     .section-title {
-      margin: 26px 0 12px;
+      margin: 28px 0 12px;
       font-size: 13px;
-      letter-spacing: 0.12em;
-      color: #f0678b;
       font-weight: 800;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      color: #ff628f;
     }
-    .lesson {
+
+    .course {
       margin-top: 14px;
       padding: 16px;
       border-radius: 24px;
       background: white;
-      box-shadow: 0 18px 34px rgba(89, 74, 101, 0.08);
+      box-shadow: 0 18px 34px rgba(87, 71, 98, 0.08);
       display: grid;
-      grid-template-columns: 74px 1fr;
+      grid-template-columns: 78px 1fr;
       gap: 14px;
       align-items: center;
     }
+
     .thumb {
-      height: 74px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #ffd86b, #ff9b54);
+      height: 78px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #ffd871, #ff9a56);
     }
-    .thumb.alt { background: linear-gradient(135deg, #a08bff, #ff6fb5); }
-    .lesson small { color: #f0678b; font-weight: 700; }
-    .lesson h3 { margin: 4px 0 6px; font-size: 18px; }
-    .footer-card {
+
+    .thumb.alt {
+      background: linear-gradient(135deg, #9c8dff, #ff6cab);
+    }
+
+    .course small {
+      color: #ff648f;
+      font-weight: 800;
+    }
+
+    .course h3 {
+      margin: 4px 0 6px;
+      font-size: 19px;
+      line-height: 1.15;
+    }
+
+    .footer {
       margin-top: 20px;
-      padding: 20px;
+      padding: 22px;
       border-radius: 28px;
-      background: linear-gradient(135deg, rgba(31,32,65,0.94), rgba(62,65,108,0.94));
+      background: linear-gradient(135deg, rgba(38,40,82,0.96), rgba(67,70,120,0.96));
       color: white;
     }
-    .footer-card p { color: rgba(255,255,255,0.72); }
+
+    .footer p { color: rgba(255,255,255,0.74); }
   </style>
 </head>
 <body>
   <div class="phone">
     <div class="screen">
       <div class="row">
-        <div class="badge">Creator monetization</div>
+        <div class="badge">Halo Studio</div>
         <div class="badge">4.9 rating</div>
       </div>
-      <h1>Same skill, but made for a playful creator app.</h1>
-      <p>stitch-ui can also drive a brighter, softer, more creator-focused product surface. Rounded shapes, candy accents, bigger rhythm, lighter copy tone.</p>
+
+      <h1>Build a creator launch that feels like your brand.</h1>
+      <p>Halo Studio helps course creators script lessons, preview launch pages, and track community momentum without losing tone, color, or energy.</p>
 
       <div class="hero">
         <div class="row">
           <strong>Week 32</strong>
           <span>Live now</span>
         </div>
-        <h2 style="margin: 12px 0 10px; font-size: 34px; line-height: 1;">Launch your paid mini-course in one flow.</h2>
-        <p>Map ideas, script lessons, collect pre-orders and keep your visual identity intact across the whole page.</p>
-        <div class="earn">Projected payout · $8,240</div>
+        <h2>Launch your paid mini-course in one flow.</h2>
+        <p>Map your modules, collect early access interest, and ship a launch experience that feels editorial instead of generic.</p>
+        <div class="cta-chip">Projected payout · $8,240</div>
       </div>
 
-      <div class="cards">
-        <div class="card">
+      <div class="stats">
+        <div class="stat">
           <strong>18k</strong>
           <p>community reach in 7 days</p>
         </div>
-        <div class="card">
+        <div class="stat">
           <strong>92%</strong>
           <p>lesson completion rate</p>
         </div>
       </div>
 
       <div class="section-title">New drops</div>
-      <div class="lesson">
+
+      <div class="course">
         <div class="thumb"></div>
         <div>
           <small>Visual storytelling</small>
           <h3>Design a paid challenge in one afternoon</h3>
-          <p>Playful UI, bright cues and high-energy structure.</p>
-        </div>
-      </div>
-      <div class="lesson">
-        <div class="thumb alt"></div>
-        <div>
-          <small>Creator systems</small>
-          <h3>Build a launch page that feels like your brand</h3>
-          <p>Not every example needs to look premium and restrained.</p>
+          <p>Bright cues, rounded surfaces, and a more playful rhythm.</p>
         </div>
       </div>
 
-      <div class="footer-card">
-        <strong style="display:block; font-size: 24px; margin-bottom: 10px;">Visual brief changes everything.</strong>
-        <p>Warm gradient backgrounds, rounded blocks and playful cards come from the brief first, not from random last-minute decoration.</p>
+      <div class="course">
+        <div class="thumb alt"></div>
+        <div>
+          <small>Creator systems</small>
+          <h3>Turn your next launch page into a real product moment</h3>
+          <p>Not every beautiful example needs to feel restrained or corporate.</p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <strong style="display:block; font-size: 26px; margin-bottom: 10px;">A better brief creates better energy.</strong>
+        <p>Playful mobile surfaces still need clear hierarchy. Color and softness should come from a system, not from decoration piled on at the end.</p>
       </div>
     </div>
   </div>

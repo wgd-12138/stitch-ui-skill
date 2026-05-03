@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurelia Homepage</title>
+  <style>
+    :root {
+      --bg: #f7f1e8;
+      --bg-soft: #fbf7f1;
+      --surface: rgba(255, 251, 246, 0.8);
+      --surface-strong: #fffaf3;
+      --text: #1d2430;
+      --muted: #6c6f7c;
+      --line: rgba(31, 36, 48, 0.1);
+      --accent: #e56a43;
+      --accent-deep: #b94c2a;
+      --accent-soft: rgba(229, 106, 67, 0.14);
+      --shadow: 0 24px 80px rgba(57, 40, 25, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 209, 168, 0.72), transparent 32%),
+        radial-gradient(circle at 85% 10%, rgba(231, 138, 108, 0.18), transparent 24%),
+        linear-gradient(180deg, #fbf6ee 0%, #f7f1e8 42%, #f2ebe0 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(1240px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      padding: 26px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 16px 20px;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 999px;
+      background: rgba(255, 250, 244, 0.58);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 30px rgba(82, 57, 40, 0.08);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #1f2430, #414858);
+      color: #fff6ea;
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      box-shadow: 0 14px 28px rgba(31, 36, 48, 0.16);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a { text-decoration: none; color: inherit; }
+
+    .nav-cta {
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: none;
+      background: var(--text);
+      color: #fff7ef;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 28px 0 84px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(0, 0.97fr);
+      gap: 38px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 251, 246, 0.76);
+      border: 1px solid rgba(31, 36, 48, 0.08);
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      backdrop-filter: blur(10px);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 8px rgba(229, 106, 67, 0.12);
+    }
+
+    h1 {
+      margin: 22px 0 18px;
+      font-family: Georgia, serif;
+      font-size: clamp(3.6rem, 7vw, 6.4rem);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      max-width: 8.4ch;
+    }
+
+    p {
+      margin: 0;
+      max-width: 560px;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 30px 0 34px;
+    }
+
+    .primary,
+    .secondary {
+      padding: 16px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: none;
+    }
+
+    .primary {
+      background: var(--text);
+      color: #fff7ef;
+      box-shadow: 0 16px 36px rgba(31, 36, 48, 0.18);
+    }
+
+    .secondary {
+      background: rgba(255, 251, 246, 0.72);
+      color: var(--text);
+      border: 1px solid rgba(31, 36, 48, 0.08);
+      box-shadow: 0 10px 24px rgba(88, 62, 44, 0.08);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 620px;
+    }
+
+    .metric {
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255, 250, 244, 0.7);
+      border: 1px solid rgba(31, 36, 48, 0.08);
+      box-shadow: 0 14px 34px rgba(68, 49, 35, 0.08);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.28rem;
+    }
+
+    .hero-preview {
+      position: relative;
+      padding: 24px;
+      border-radius: 40px;
+      background: linear-gradient(180deg, rgba(255, 251, 246, 0.88), rgba(249, 241, 230, 0.88));
+      border: 1px solid rgba(255,255,255,0.56);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .preview-window {
+      border-radius: 26px;
+      overflow: hidden;
+      background: #fff9f1;
+      border: 1px solid rgba(31, 36, 48, 0.08);
+    }
+
+    .preview-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(31, 36, 48, 0.06);
+      background: rgba(255, 251, 246, 0.9);
+    }
+
+    .window-dots { display: inline-flex; gap: 8px; }
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(31, 36, 48, 0.16);
+    }
+
+    .window-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .preview-body {
+      display: grid;
+      grid-template-columns: 208px minmax(0, 1fr);
+      min-height: 520px;
+    }
+
+    .preview-sidebar {
+      padding: 24px 18px;
+      background: linear-gradient(180deg, #232938, #2f3747);
+      color: rgba(255, 247, 235, 0.9);
+    }
+
+    .preview-sidebar h3 {
+      margin: 0 0 20px;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 247, 235, 0.68);
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(255, 247, 235, 0.92);
+      font-size: 0.95rem;
+    }
+
+    .sidebar-item.active {
+      background: rgba(229, 106, 67, 0.2);
+      border: 1px solid rgba(229, 106, 67, 0.42);
+    }
+
+    .sidebar-item small { color: rgba(255, 247, 235, 0.58); }
+
+    .preview-content {
+      padding: 28px;
+      background:
+        radial-gradient(circle at top right, rgba(229, 106, 67, 0.08), transparent 24%),
+        #fffaf3;
+    }
+
+    .preview-banner {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .preview-card,
+    .preview-mini,
+    .workflow-card,
+    .quote-card,
+    .pricing-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 252, 247, 0.88);
+      box-shadow: 0 16px 30px rgba(79, 57, 36, 0.07);
+    }
+
+    .preview-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 232px;
+    }
+
+    .preview-card h2 {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: 2.15rem;
+      line-height: 1.02;
+    }
+
+    .preview-card p,
+    .preview-mini p,
+    .section-intro p,
+    .quote-card p,
+    .pricing-card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .accent-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      font-size: 0.82rem;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    .preview-mini {
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .mini-stat {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(31, 36, 48, 0.08);
+    }
+
+    .mini-stat:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .mini-stat strong {
+      font-size: 1.7rem;
+      line-height: 1;
+    }
+
+    .mini-stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .preview-tile {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 252, 247, 0.88);
+      border: 1px solid rgba(31, 36, 48, 0.08);
+    }
+
+    .preview-tile strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .preview-tile p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .section {
+      padding: 46px 0;
+    }
+
+    .section-intro {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-intro h2 {
+      margin: 8px 0 0;
+      font-family: Georgia, serif;
+      font-size: clamp(2.1rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .section-intro .label {
+      color: var(--accent-deep);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .workflow-grid,
+    .quote-grid,
+    .pricing-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .workflow-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .workflow-card {
+      padding: 24px;
+    }
+
+    .workflow-card .step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      font-weight: 800;
+    }
+
+    .workflow-card h3,
+    .quote-card h3,
+    .pricing-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+    }
+
+    .workflow-card p,
+    .quote-card p,
+    .pricing-card p {
+      margin: 0;
+    }
+
+    .quote-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .quote-card {
+      padding: 28px;
+    }
+
+    .quote-card blockquote {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      line-height: 1.22;
+      letter-spacing: -0.03em;
+    }
+
+    .quote-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(229, 106, 67, 0.22), rgba(31, 36, 48, 0.12));
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .pricing-card {
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card.featured {
+      background: linear-gradient(180deg, rgba(255, 250, 244, 0.96), rgba(255, 239, 228, 0.96));
+      border-color: rgba(229, 106, 67, 0.28);
+      transform: translateY(-6px);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .price {
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .price strong {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 0.9;
+    }
+
+    .feature-list {
+      margin: 18px 0 26px;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: start;
+      gap: 10px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .feature-list li::before {
+      content: "•";
+      color: var(--accent);
+      font-weight: 900;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .pricing-button {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: none;
+      font-weight: 700;
+      background: var(--text);
+      color: #fff7ef;
+    }
+
+    .pricing-card.featured .pricing-button {
+      background: linear-gradient(180deg, #f28b60, #d65b34);
+      box-shadow: 0 20px 44px rgba(214, 91, 52, 0.28);
+    }
+
+    .cta-panel {
+      margin: 64px 0 40px;
+      padding: 38px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, #252b3a, #313a4b 58%, #3f4a5c 100%);
+      color: #fff7ef;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: 0 30px 80px rgba(31, 36, 48, 0.22);
+    }
+
+    .cta-panel h2 {
+      margin: 0 0 10px;
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .cta-panel p {
+      margin: 0;
+      color: rgba(255, 247, 235, 0.72);
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    .cta-panel .primary {
+      background: linear-gradient(180deg, #f28b60, #d65b34);
+      box-shadow: 0 20px 44px rgba(214, 91, 52, 0.28);
+    }
+
+    .footer {
+      padding: 0 0 34px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(31, 36, 48, 0.08);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <span class="brand-mark">A</span>
+          <span>Aurelia</span>
+        </div>
+        <nav class="nav-links">
+          <a href="#product">Product</a>
+          <a href="#proof">Proof</a>
+          <a href="#pricing">Pricing</a>
+        </nav>
+        <button class="nav-cta">Book demo</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow"><span class="dot"></span> Premium AI workflow for modern teams</div>
+            <h1>Make every interface feel designed.</h1>
+            <p>Aurelia helps teams turn raw product ideas into calm, high-trust interfaces with cleaner hierarchy, better spacing, and a more deliberate visual system.</p>
+            <div class="hero-actions">
+              <button class="primary">Start building</button>
+              <button class="secondary">See templates</button>
+            </div>
+            <div class="hero-metrics">
+              <div class="metric"><strong>3x</strong><span>faster page planning</span></div>
+              <div class="metric"><strong>92%</strong><span>approval rate</span></div>
+              <div class="metric"><strong>18</strong><span>layout patterns included</span></div>
+            </div>
+          </div>
+
+          <div class="hero-preview">
+            <div class="preview-window">
+              <div class="preview-topbar">
+                <div class="window-dots"><span></span><span></span><span></span></div>
+                <div class="window-label">live preview</div>
+              </div>
+              <div class="preview-body">
+                <aside class="preview-sidebar">
+                  <h3>Playbook</h3>
+                  <div class="sidebar-item active"><span>Visual brief</span><small>01</small></div>
+                  <div class="sidebar-item"><span>Layout system</span><small>02</small></div>
+                  <div class="sidebar-item"><span>Component map</span><small>03</small></div>
+                  <div class="sidebar-item"><span>Polish pass</span><small>04</small></div>
+                </aside>
+                <div class="preview-content">
+                  <div class="preview-banner">
+                    <div class="preview-card">
+                      <div class="accent-strip">Warm ivory / coral accent / editorial type</div>
+                      <h2>Build pages that look calm, not generic.</h2>
+                      <p>Use the brief first, then let the component structure follow. That sequence creates much stronger product pages.</p>
+                    </div>
+                    <div class="preview-mini">
+                      <div class="mini-stat"><div><strong>78%</strong><span>less template feel</span></div><span>quality</span></div>
+                      <div class="mini-stat"><div><strong>14px</strong><span>system spacing</span></div><span>rhythm</span></div>
+                      <div class="mini-stat"><div><strong>2 colors</strong><span>main palette axis</span></div><span>focus</span></div>
+                    </div>
+                  </div>
+                  <div class="preview-grid">
+                    <div class="preview-tile"><strong>Extract the brief</strong><p>Define mood, layout, typography, and things to avoid before writing anything.</p></div>
+                    <div class="preview-tile"><strong>Compose the page</strong><p>Use reusable sections instead of dumping one giant generated screen.</p></div>
+                    <div class="preview-tile"><strong>Polish the result</strong><p>Tighten spacing, hierarchy, and mobile behavior before shipping.</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="product">
+        <div class="section-intro">
+          <div>
+            <div class="label">Product logic</div>
+            <h2>Designed for teams that care how the page feels.</h2>
+          </div>
+          <p>Not every AI page needs to be flashy. The stronger result is usually the one with better rhythm, calmer hierarchy, and more confidence in the layout.</p>
+        </div>
+        <div class="workflow-grid">
+          <article class="workflow-card">
+            <div class="step">01</div>
+            <h3>Brief first</h3>
+            <p>Lock the page type, audience, mood, color direction, and component character before implementation begins.</p>
+          </article>
+          <article class="workflow-card">
+            <div class="step">02</div>
+            <h3>Component map</h3>
+            <p>Translate the visual system into sections, cards, rails, CTAs, and proof blocks that can be maintained later.</p>
+          </article>
+          <article class="workflow-card">
+            <div class="step">03</div>
+            <h3>Polish pass</h3>
+            <p>Use one final pass to tighten spacing, contrast, and responsiveness so the output feels intentional.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="proof">
+        <div class="quote-grid">
+          <article class="quote-card">
+            <blockquote>“A good AI-assisted page is not the one with the most effects. It is the one where every choice looks deliberate.”</blockquote>
+            <div class="quote-meta">
+              <div class="avatar">A</div>
+              <div><strong>Aurelia team</strong><br><span>Interface systems for product teams.</span></div>
+            </div>
+          </article>
+          <article class="quote-card">
+            <div class="label">What users get</div>
+            <h3>Reusable patterns for better pages</h3>
+            <p>Whether the goal is a homepage, dashboard, pricing page, or documentation tool, the visual system stays clear and buildable.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="section-intro">
+          <div>
+            <div class="label">Plans</div>
+            <h2>Simple enough to understand, strong enough to ship.</h2>
+          </div>
+          <p>The page sells the product with clarity and structure, not with clutter or gimmicks.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <div class="pill">Starter</div>
+            <div class="price"><strong>$49</strong><span>/ seat</span></div>
+            <p>For smaller teams validating their first AI-assisted workflow.</p>
+            <ul class="feature-list">
+              <li>Visual brief workflow</li>
+              <li>Prompt templates</li>
+              <li>Basic design QA</li>
+            </ul>
+            <button class="pricing-button">Start small</button>
+          </article>
+          <article class="pricing-card featured">
+            <div class="pill">Growth</div>
+            <div class="price"><strong>$129</strong><span>/ seat</span></div>
+            <p>For product teams shipping polished surfaces weekly.</p>
+            <ul class="feature-list">
+              <li>Multi-page generation</li>
+              <li>Component-library guidance</li>
+              <li>Visual polish pass</li>
+            </ul>
+            <button class="pricing-button">Choose growth</button>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>Designed to feel premium, not noisy.</span>
+        <span>Warm ivory / coral accent / editorial UI</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

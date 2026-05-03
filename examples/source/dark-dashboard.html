@@ -3,78 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dark Dashboard Example</title>
+  <title>PulseOps Dashboard</title>
   <style>
     :root {
-      --bg: #09111f;
-      --panel: rgba(12, 24, 44, 0.78);
-      --panel-strong: #0f1d35;
-      --line: rgba(138, 173, 244, 0.14);
-      --text: #eff5ff;
-      --muted: #8c9dbb;
-      --cyan: #72e6ff;
-      --lime: #c7ff6b;
-      --violet: #9d8cff;
+      --bg: #070d18;
+      --shell: rgba(7, 14, 27, 0.84);
+      --panel: rgba(17, 26, 46, 0.82);
+      --panel-soft: rgba(18, 30, 52, 0.68);
+      --line: rgba(158, 190, 255, 0.12);
+      --text: #edf4ff;
+      --muted: #8ea0bf;
+      --cyan: #75e2ff;
+      --violet: #8f8dff;
+      --lime: #c8ff67;
     }
 
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Inter, system-ui, sans-serif;
+      font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(114, 230, 255, 0.18), transparent 24%),
-        radial-gradient(circle at top right, rgba(157, 140, 255, 0.18), transparent 24%),
-        linear-gradient(180deg, #07101d 0%, #09111f 46%, #050b15 100%);
+        radial-gradient(circle at top left, rgba(117, 226, 255, 0.18), transparent 24%),
+        radial-gradient(circle at 86% 10%, rgba(143, 141, 255, 0.18), transparent 24%),
+        linear-gradient(180deg, #050a14 0%, #070d18 42%, #040913 100%);
       min-height: 100vh;
     }
 
     .shell {
-      width: min(1240px, calc(100% - 48px));
-      margin: 24px auto;
-      border: 1px solid rgba(255,255,255,0.06);
+      width: min(1280px, calc(100% - 40px));
+      margin: 22px auto;
       border-radius: 30px;
       overflow: hidden;
-      background: rgba(6, 12, 24, 0.74);
+      border: 1px solid rgba(255,255,255,0.05);
+      background: var(--shell);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.42);
       backdrop-filter: blur(20px);
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.36);
     }
 
     .topbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 18px 22px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(8, 14, 27, 0.82);
     }
 
-    .brand { font-weight: 800; letter-spacing: 0.04em; }
-    .brand span { color: var(--cyan); }
-    .actions { display: flex; gap: 12px; color: var(--muted); }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(117,226,255,0.2), rgba(143,141,255,0.26));
+      color: var(--cyan);
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 12px;
+      color: var(--muted);
+    }
+
     .chip {
       padding: 10px 14px;
-      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
     }
 
     .layout {
       display: grid;
-      grid-template-columns: 244px minmax(0, 1fr);
-      min-height: 900px;
+      grid-template-columns: 236px minmax(0, 1fr);
+      min-height: 920px;
     }
 
     aside {
-      padding: 24px 18px;
-      border-right: 1px solid rgba(255,255,255,0.05);
-      background: rgba(4, 10, 22, 0.68);
+      padding: 22px 18px;
+      border-right: 1px solid rgba(255,255,255,0.04);
+      background: rgba(4, 10, 21, 0.72);
     }
 
     .nav-item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 10px;
+      align-items: center;
       padding: 14px 16px;
+      margin-bottom: 10px;
       border-radius: 16px;
       color: var(--muted);
       background: rgba(255,255,255,0.02);
@@ -82,11 +106,12 @@
 
     .nav-item.active {
       color: var(--text);
-      background: linear-gradient(135deg, rgba(114,230,255,0.14), rgba(157,140,255,0.14));
-      border: 1px solid rgba(114,230,255,0.2);
+      border: 1px solid rgba(117,226,255,0.18);
+      background: linear-gradient(135deg, rgba(117,226,255,0.12), rgba(143,141,255,0.12));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
     }
 
-    main { padding: 28px; }
+    main { padding: 26px; }
 
     .hero {
       display: grid;
@@ -96,55 +121,76 @@
     }
 
     .card {
+      border-radius: 26px;
       border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 22px;
-      background: linear-gradient(180deg, rgba(16, 31, 56, 0.82), rgba(11, 21, 40, 0.82));
+      background: linear-gradient(180deg, rgba(19, 31, 54, 0.92), rgba(10, 20, 37, 0.94));
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
-    h1 {
-      margin: 14px 0 10px;
-      font-size: 54px;
-      line-height: 0.95;
-      letter-spacing: -0.05em;
+    .lead {
+      padding: 26px;
     }
 
-    p { margin: 0; color: var(--muted); line-height: 1.7; }
-    .pill {
+    .label {
       display: inline-flex;
       padding: 8px 12px;
       border-radius: 999px;
+      background: rgba(200,255,103,0.12);
+      color: var(--lime);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #09111f;
-      background: var(--lime);
     }
 
-    .stats {
+    h1 {
+      margin: 16px 0 12px;
+      font-size: 64px;
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      max-width: 10ch;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .metrics {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
       margin-top: 22px;
     }
 
-    .stat {
+    .metric {
       padding: 16px;
       border-radius: 18px;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.04);
     }
 
-    .stat strong { display: block; font-size: 28px; margin-bottom: 6px; }
+    .metric strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 30px;
+    }
 
-    .chart {
-      height: 100%;
-      min-height: 280px;
+    .chart-card {
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      min-height: 330px;
+    }
+
+    .mini-title {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
     .bars {
@@ -153,123 +199,143 @@
       align-items: end;
       gap: 12px;
       height: 190px;
+      padding: 16px 0;
     }
 
     .bar {
       border-radius: 16px 16px 6px 6px;
-      background: linear-gradient(180deg, rgba(114,230,255,0.96), rgba(157,140,255,0.38));
-      box-shadow: 0 12px 24px rgba(114,230,255,0.14);
+      background: linear-gradient(180deg, rgba(117,226,255,0.96), rgba(143,141,255,0.38));
+      box-shadow: 0 12px 24px rgba(117,226,255,0.14);
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 18px;
     }
 
-    .mini-title {
-      color: var(--muted);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 10px;
+    .subcard {
+      padding: 20px;
     }
 
     .line-chart {
-      height: 120px;
+      margin-top: 16px;
+      height: 140px;
       border-radius: 18px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        radial-gradient(circle at 20% 20%, rgba(199,255,107,0.18), transparent 24%);
+        radial-gradient(circle at 20% 20%, rgba(200,255,103,0.12), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
       position: relative;
       overflow: hidden;
     }
 
-    .line-chart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .line-chart svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-    .list { display: grid; gap: 12px; margin-top: 14px; }
+    .list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
     .row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 14px;
+      padding: 14px 16px;
       border-radius: 16px;
       background: rgba(255,255,255,0.03);
       color: var(--muted);
     }
 
-    .row strong { color: var(--text); font-size: 15px; }
+    .row strong {
+      color: var(--text);
+      font-size: 15px;
+    }
   </style>
 </head>
 <body>
   <div class="shell">
     <div class="topbar">
-      <div class="brand"><span>STITCH</span> OPS</div>
-      <div class="actions">
-        <div class="chip">AI Signals</div>
-        <div class="chip">Live Forecast</div>
-        <div class="chip">Export</div>
+      <div class="brand">
+        <div class="mark">P</div>
+        <div>PulseOps</div>
+      </div>
+      <div class="top-actions">
+        <div class="chip">Command</div>
+        <div class="chip">Forecast</div>
+        <div class="chip">Exports</div>
       </div>
     </div>
+
     <div class="layout">
       <aside>
-        <div class="nav-item active"><span>Command</span><span>01</span></div>
-        <div class="nav-item"><span>Attribution</span><span>02</span></div>
-        <div class="nav-item"><span>Demand</span><span>03</span></div>
+        <div class="nav-item active"><span>Overview</span><span>01</span></div>
+        <div class="nav-item"><span>Revenue</span><span>02</span></div>
+        <div class="nav-item"><span>Retention</span><span>03</span></div>
         <div class="nav-item"><span>Segments</span><span>04</span></div>
-        <div class="nav-item"><span>Models</span><span>05</span></div>
+        <div class="nav-item"><span>Playbooks</span><span>05</span></div>
       </aside>
+
       <main>
         <section class="hero">
-          <div class="card">
-            <div class="pill">Dark analytics dashboard</div>
-            <h1>High-signal operations for fast teams.</h1>
-            <p>One style direction for stitch-ui can be a deep, sharp, cinematic dashboard instead of a warm landing page. Same skill, totally different surface language.</p>
-            <div class="stats">
-              <div class="stat"><strong>+38%</strong><span>pipeline velocity</span></div>
-              <div class="stat"><strong>92</strong><span>priority alerts cleared</span></div>
-              <div class="stat"><strong>4.2x</strong><span>forecast confidence</span></div>
+          <div class="card lead">
+            <div class="label">Realtime operations</div>
+            <h1>Know where growth breaks before the week ends.</h1>
+            <p>PulseOps brings revenue, retention, campaign lift, and product signals into one high-contrast control surface built for fast decision-making teams.</p>
+            <div class="metrics">
+              <div class="metric"><strong>+38%</strong><span>pipeline velocity</span></div>
+              <div class="metric"><strong>92</strong><span>alerts resolved this week</span></div>
+              <div class="metric"><strong>4.2x</strong><span>forecast confidence</span></div>
             </div>
           </div>
-          <div class="card chart">
-            <div class="mini-title">weekly model drift</div>
-            <div class="bars">
-              <div class="bar" style="height: 32%"></div>
-              <div class="bar" style="height: 52%"></div>
-              <div class="bar" style="height: 68%"></div>
-              <div class="bar" style="height: 46%"></div>
-              <div class="bar" style="height: 74%"></div>
-              <div class="bar" style="height: 92%"></div>
-              <div class="bar" style="height: 84%"></div>
+          <div class="card chart-card">
+            <div>
+              <div class="mini-title">weekly model drift</div>
+              <div class="bars">
+                <div class="bar" style="height: 32%"></div>
+                <div class="bar" style="height: 52%"></div>
+                <div class="bar" style="height: 68%"></div>
+                <div class="bar" style="height: 46%"></div>
+                <div class="bar" style="height: 74%"></div>
+                <div class="bar" style="height: 92%"></div>
+                <div class="bar" style="height: 84%"></div>
+              </div>
             </div>
-            <p>Color, density and geometry all shift to fit a high-contrast command center use case.</p>
+            <p>Use cold contrast, disciplined spacing, and compact hierarchy when the interface needs to feel operational instead of promotional.</p>
           </div>
         </section>
 
         <section class="grid">
-          <div class="card">
+          <div class="card subcard">
             <div class="mini-title">throughput curve</div>
             <div class="line-chart">
               <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-                <polyline fill="none" stroke="#72e6ff" stroke-width="3" points="0,78 18,72 34,64 48,58 66,44 82,32 100,18"></polyline>
-                <polyline fill="none" stroke="#c7ff6b" stroke-width="3" points="0,84 16,80 34,74 52,66 70,54 88,48 100,42"></polyline>
+                <polyline fill="none" stroke="#75e2ff" stroke-width="3" points="0,78 16,74 32,68 48,60 66,48 82,34 100,18"></polyline>
+                <polyline fill="none" stroke="#c8ff67" stroke-width="3" points="0,84 18,80 34,76 52,68 70,58 88,50 100,42"></polyline>
               </svg>
             </div>
           </div>
-          <div class="card">
+
+          <div class="card subcard">
             <div class="mini-title">top signals</div>
             <div class="list">
-              <div class="row"><strong>Retention anomaly</strong><span>+18%</span></div>
-              <div class="row"><strong>Channel surge</strong><span>+11%</span></div>
+              <div class="row"><strong>Enterprise expansion</strong><span>+18%</span></div>
+              <div class="row"><strong>Paid activation</strong><span>+11%</span></div>
               <div class="row"><strong>Lead freshness</strong><span>+7%</span></div>
             </div>
           </div>
-          <div class="card">
+
+          <div class="card subcard">
             <div class="mini-title">automation health</div>
             <div class="list">
-              <div class="row"><strong>Data sync</strong><span>stable</span></div>
-              <div class="row"><strong>Routing AI</strong><span>learning</span></div>
-              <div class="row"><strong>Alerting</strong><span>live</span></div>
+              <div class="row"><strong>Revenue sync</strong><span>stable</span></div>
+              <div class="row"><strong>Routing model</strong><span>learning</span></div>
+              <div class="row"><strong>Alert engine</strong><span>live</span></div>
             </div>
           </div>
         </section>
