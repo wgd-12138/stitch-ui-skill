@@ -5,70 +5,100 @@ English | [简体中文](README.zh-CN.md)
 [![GitHub stars](https://img.shields.io/github/stars/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/stargazers)
 [![GitHub license](https://img.shields.io/github/license/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/blob/main/LICENSE)
 [![Skill](https://img.shields.io/badge/skill-Claude%20%26%20Codex-ff7a45?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill)
+[![Portable](https://img.shields.io/badge/install-copy%20folder-blue?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill)
 
-Turn Google Stitch ideas, screenshots, or exported markup into frontend pages that feel polished instead of generic.
+An AI skill for Claude and Codex that turns Google Stitch ideas, screenshots, or exported markup into frontend pages that feel intentional instead of generic.
 
-`stitch-ui` is a portable skill for Claude and Codex. It helps the model:
+## What makes this different
 
-1. extract a compact visual brief first
-2. pick the right component-library strategy
-3. rebuild the page in reusable sections
-4. do one more visual polish pass before stopping
+Most AI-generated pages fail in the same way:
 
-That extra structure is what helps the result feel less like a default AI template.
-
-## Why this is useful
-
-Most AI-generated frontend pages can run, but they often share the same problems:
-
-- generic SaaS styling
+- one repeated SaaS template
 - weak typography
 - crowded spacing
-- random gradients and effects
-- hard-to-maintain exported markup
+- decorative effects without a system
+- exported markup that is hard to maintain
 
-`stitch-ui` fixes that by forcing the model to lock in:
+`stitch-ui` fixes that by forcing the model to decide the visual system first:
 
-- mood
-- typography direction
-- spacing rhythm
-- color system
-- component character
-- what to avoid
+1. extract a compact visual brief
+2. choose the component-library strategy
+3. rebuild the page in reusable sections
+4. run a visual polish pass before stopping
 
-before it starts writing code.
+That extra reasoning step is what gives the output more range.
+
+## What's new in the showcase
+
+- Scene-first homepage instead of a flat image wall
+- Five distinct examples with different layout logic
+- Mobile, dashboard, marketing, pricing, and docs workspace coverage
+- English and Chinese landing pages
+
+## Scene system at a glance
+
+| Scene | Layout archetype | Device emphasis | Visual direction | What it proves |
+|---|---|---|---|---|
+| Warm editorial landing page | Hero-first marketing layout | Desktop + mobile | warm, spacious, premium | strong homepage storytelling |
+| Dark analytics dashboard | Dense control surface | Desktop | high-contrast, data-first | dashboards do not need landing-page structure |
+| Playful creator app | stacked app feed | Mobile-first | bright, soft, energetic | consumer mobile rhythm |
+| Enterprise pricing page | comparison grid | Desktop | quiet, structured, B2B | calm decision-page design |
+| Docs workspace | three-pane knowledge tool | Desktop | text-first, editorial, practical | research and documentation UIs |
 
 ## Showcase by scene
 
-The skill is useful because it can fit very different product surfaces without collapsing into one repeated layout.
-
 ### 1. Warm editorial landing page
 
-Best for product homepages and marketing sites. This example uses a calm warm palette, large type, generous whitespace, and a strong hero-first composition.
+Best for product homepages and marketing sites.
+
+- large type
+- wide whitespace
+- hero-led composition
+- quiet warm palette
 
 ![Warm editorial landing page](examples/desktop-preview.png)
 
 ### 2. Dark analytics dashboard
 
-Best for operations tools and command-center UIs. The layout shifts into a high-contrast control surface with tighter density and data-first cards.
+Best for operations tools and command-center UIs.
+
+- tighter density
+- data-first card system
+- contrast-led navigation
+- high-signal information layout
 
 ![Dark analytics dashboard](examples/dark-dashboard.png)
 
 ### 3. Playful creator app
 
-Best for mobile-first consumer products. This example uses softer shapes, brighter gradients, and a more energetic, app-like rhythm.
+Best for mobile-first consumer products.
+
+- app-like stacking
+- brighter gradients
+- softer geometry
+- higher energy tone
 
 ![Playful creator app](examples/playful-creator-app.png)
 
 ### 4. Enterprise pricing page
 
-Best for B2B decision pages. It becomes quieter, more structured, and more procurement-friendly, with less visual noise.
+Best for B2B decision pages.
+
+- cleaner comparison structure
+- quieter accent system
+- trust-first tone
+- lower visual noise
 
 ![Enterprise pricing page](examples/enterprise-pricing.png)
 
 ### 5. Docs workspace
 
-Best for documentation, knowledge bases, and research tools. This one is text-first, split-pane, and much more editorial than the others.
+Best for documentation, knowledge bases, and research tools.
+
+- split navigation
+- text-first content area
+- reference side panel
+- workspace-style composition
 
 ![Docs workspace](examples/docs-workspace.png)
 
@@ -85,7 +115,7 @@ The same warm editorial direction also works on small screens.
 | `stitch-ui/SKILL.md` | Main workflow and quality rules |
 | `stitch-ui/references/prompt-templates.md` | Ready-to-paste prompt templates |
 | `stitch-ui/agents/openai.yaml` | UI metadata for compatible skill surfaces |
-| `examples/` | Multiple screenshots across different scenes and visual systems |
+| `examples/` | Scene-based screenshots with different layout types |
 
 ## Install
 

@@ -5,74 +5,106 @@
 [![GitHub stars](https://img.shields.io/github/stars/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/stargazers)
 [![GitHub license](https://img.shields.io/github/license/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/blob/main/LICENSE)
 [![Skill](https://img.shields.io/badge/skill-Claude%20%26%20Codex-ff7a45?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill)
+[![Portable](https://img.shields.io/badge/install-copy%20folder-blue?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill)
 
-把 Google Stitch 的想法、截图或导出结构，变成更像真实产品的前端页面，而不是默认 AI 模板页。
+一个同时适用于 Claude 和 Codex 的 AI skill，用来把 Google Stitch 的想法、截图或导出结构，变成更像真实产品的前端页面，而不是默认 AI 模板页。
 
-`stitch-ui` 是一个同时适用于 Claude 和 Codex 的可移植 skill。它会强制模型按这个顺序工作：
+## 它和普通“生成一个页面”有什么不同
 
-1. 先提炼视觉简报
-2. 再选择合适的组件库策略
-3. 再按模块重建页面
-4. 最后再做一轮视觉复盘
+很多 AI 生成页的问题都很像：
 
-也正因为多了这层约束，生成结果更不容易回到“千篇一律的 AI 页面”。
-
-## 为什么这个 skill 有价值
-
-很多 AI 生成的前端页能跑，但常见问题也很明显：
-
-- SaaS 模板味很重
+- 总是回到同一种 SaaS 模板
 - 字体层级很弱
 - 留白和节奏不稳定
-- 特效乱加
-- 导出代码很难维护
+- 特效是乱加的，不成系统
+- 导出代码难维护
 
-`stitch-ui` 会逼模型在写代码前先说清楚这些东西：
+`stitch-ui` 的做法是先把视觉系统定下来，再写代码：
 
-- 页面气质
-- 字体方向
-- 间距节奏
-- 配色系统
-- 组件性格
-- 明确要避开的风格
+1. 提炼视觉简报
+2. 选择组件库策略
+3. 按模块重建页面
+4. 最后再做一轮视觉复盘
+
+也正因为多了这层推理，生成结果的适用面会更广。
+
+## 这次首页重点更新了什么
+
+- 首页从“图片墙”改成“按场景展示”
+- 现在有 5 个真正不同的页面类型
+- 覆盖营销页、看板、移动端产品、定价页、文档工作台
+- 中英双语首页都能直接看
+
+## 场景能力总览
+
+| 场景 | 页面骨架 | 设备重点 | 视觉方向 | 证明什么 |
+|---|---|---|---|---|
+| 暖色杂志感首页 | Hero 主导型营销布局 | 桌面 + 手机 | 温暖、疏朗、高级 | 擅长官网首页叙事 |
+| 深色数据看板 | 高密度控制台 | 桌面 | 高对比、数据优先 | 不会被迫做成首页结构 |
+| 轻快创作者产品 | App 式堆叠布局 | 手机优先 | 明亮、柔和、活泼 | 能处理消费类移动产品 |
+| 企业定价页 | 对比型定价栅格 | 桌面 | 安静、克制、B2B | 适合决策型页面 |
+| 文档工作台 | 三栏知识工具 | 桌面 | 文字优先、编辑感、实用 | 适合文档和研究工具 |
 
 ## 按场景展示
 
-这个 skill 的价值不在于只会一种审美，而在于它能稳住很多不同的产品表面。
-
 ### 1. 暖色杂志感首页
 
-适合产品首页和营销页。这个例子用的是更温和的配色、更大的标题和更宽松的留白。
+适合产品首页和营销页。
+
+- 大标题
+- 大留白
+- Hero 主导
+- 温和暖色系
 
 ![暖色杂志感首页](examples/desktop-preview.png)
 
 ### 2. 深色数据看板
 
-适合运营面板和控制台。这里会变成更高对比度、更偏数据驱动的结构。
+适合运营面板和控制台。
+
+- 信息密度更高
+- 数据优先卡片系统
+- 导航更强
+- 布局偏控制台
 
 ![深色数据看板](examples/dark-dashboard.png)
 
 ### 3. 轻快创作者产品
 
-适合移动端消费类产品。这个例子更亮、更软，也更像 App。
+适合移动端消费类产品。
+
+- 更像 App
+- 配色更亮
+- 形状更软
+- 节奏更轻快
 
 ![轻快创作者产品](examples/playful-creator-app.png)
 
 ### 4. 企业定价页
 
-适合 B2B 决策页。它会更安静、更克制，也更像采购和评估场景。
+适合 B2B 决策页。
+
+- 对比结构更清楚
+- 强调色更克制
+- 信任感优先
+- 视觉噪音更低
 
 ![企业定价页](examples/enterprise-pricing.png)
 
 ### 5. 文档工作台
 
-适合文档、知识库和研究工具。这个例子是文字优先、分栏结构，和前面几种完全不是一类。
+适合文档、知识库和研究工具。
+
+- 左侧导航
+- 中间正文
+- 右侧参考栏
+- 典型工作台结构
 
 ![文档工作台](examples/docs-workspace.png)
 
 ### 暖色首页的移动端示例
 
-同一套审美也可以自然落到小屏幕。
+同一套暖色审美也可以自然落到小屏幕。
 
 ![移动端示例](examples/mobile-preview.png)
 
@@ -83,7 +115,7 @@
 | `stitch-ui/SKILL.md` | 主工作流和质量规则 |
 | `stitch-ui/references/prompt-templates.md` | 可直接复制的提示词模板 |
 | `stitch-ui/agents/openai.yaml` | 支持元数据的 skill 环境展示信息 |
-| `examples/` | 多风格、多场景的示例截图 |
+| `examples/` | 按场景组织的示例截图 |
 
 ## 安装方法
 
