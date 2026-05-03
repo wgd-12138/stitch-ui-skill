@@ -2,6 +2,8 @@
 
 Use these templates when the user wants a better-looking frontend page through Google Stitch plus Claude/Codex.
 
+For reference-quality recipes inspired by admired public sites, also read [reference-inspired-prompts.md](reference-inspired-prompts.md).
+
 ## 1. Stitch prompt template
 
 Use when the user only has an idea and needs Stitch to generate a stronger visual direction first.

@@ -31,6 +31,8 @@ If the user only has an idea, read [references/prompt-templates.md](references/p
 - one Codex/Claude implementation prompt
 - one short visual brief
 
+If the user explicitly wants a page that feels closer to admired public design benchmarks, also read [references/reference-inspired-prompts.md](references/reference-inspired-prompts.md) and select the closest reference family before drafting prompts.
+
 ## Step 2: Extract the visual brief
 
 Before writing code, summarize the page in 6 lines or fewer:
@@ -146,3 +148,5 @@ Requirements:
 ```
 
 For ready-to-paste prompts, read [references/prompt-templates.md](references/prompt-templates.md).
+
+For higher-end public-reference recipes, also read [references/reference-inspired-prompts.md](references/reference-inspired-prompts.md). Use those as inspiration maps, not copy targets.

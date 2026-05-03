@@ -34,6 +34,7 @@
 - 现在有 5 个真正不同的页面类型
 - 覆盖营销页、看板、移动端产品、定价页、文档工作台
 - 中英双语首页都能直接看
+- 新增参考型提示词配方，可直接学习公认好看的页面逻辑
 
 ## 场景能力总览
 
@@ -107,6 +108,25 @@
 同一套暖色审美也可以自然落到小屏幕。
 
 ![移动端示例](examples/mobile-preview.png)
+
+## 参考型提示词配方
+
+如果你希望示例更接近公开公认比较好看的现代产品页面，可以直接学习这些参考族：
+
+| 参考方向 | 借什么 | 配方 |
+|---|---|---|
+| Stripe 风格高级首页 | 企业信任感、大标题、模块化证明区 | [打开配方](stitch-ui/references/reference-inspired-prompts.md#1-stripe-inspired-premium-homepage) |
+| Linear 风格深色产品面 | 高对比、产品密度、数据优先布局 | [打开配方](stitch-ui/references/reference-inspired-prompts.md#2-linear-inspired-dark-product-surface) |
+| Framer 风格创意构建页 | 分层构图、创意张力、动态 Hero 结构 | [打开配方](stitch-ui/references/reference-inspired-prompts.md#3-framer-inspired-expressive-builder-page) |
+| Notion 风格知识工作台 | 冷静层级、文字优先、分栏逻辑 | [打开配方](stitch-ui/references/reference-inspired-prompts.md#4-notion-inspired-knowledge-workspace) |
+| Awwwards 风格实验型微站 | 更强的艺术指导、非对称构图、节奏冲击 | [打开配方](stitch-ui/references/reference-inspired-prompts.md#5-award-site-experimental-microsite) |
+
+这些配方里包含：
+
+- 该看什么
+- 一份 Stitch 提示词
+- 一份 Codex / Claude 落地提示词
+- 明确哪些地方不要照搬，避免做成模仿品
 
 ## 仓库里有什么
 
@@ -205,6 +225,7 @@ stitch-ui/
 见：
 
 - [stitch-ui/references/prompt-templates.md](stitch-ui/references/prompt-templates.md)
+- [stitch-ui/references/reference-inspired-prompts.md](stitch-ui/references/reference-inspired-prompts.md)
 
 里面包含：
 
@@ -212,6 +233,7 @@ stitch-ui/
 - 截图转代码模板
 - 导出代码重构模板
 - 快速视觉简报模板
+- 面向高级首页、看板、构建器、文档工作台、实验型微站的参考配方
 
 ## 为什么它更稳
 

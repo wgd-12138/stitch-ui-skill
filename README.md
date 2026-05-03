@@ -34,6 +34,7 @@ That extra reasoning step is what gives the output more range.
 - Five distinct examples with different layout logic
 - Mobile, dashboard, marketing, pricing, and docs workspace coverage
 - English and Chinese landing pages
+- Reference-inspired prompt recipes based on admired public design benchmarks
 
 ## Scene system at a glance
 
@@ -107,6 +108,25 @@ Best for documentation, knowledge bases, and research tools.
 The same warm editorial direction also works on small screens.
 
 ![Mobile preview](examples/mobile-preview.png)
+
+## Reference-informed prompt recipes
+
+If you want the examples to feel closer to widely admired modern product pages, study these reference families:
+
+| Reference family | What to borrow | Recipe |
+|---|---|---|
+| Stripe-style premium homepage | enterprise trust, large narrative type, modular proof sections | [Open recipe](stitch-ui/references/reference-inspired-prompts.md#1-stripe-inspired-premium-homepage) |
+| Linear-style dark product surface | sharp contrast, product density, data-first composition | [Open recipe](stitch-ui/references/reference-inspired-prompts.md#2-linear-inspired-dark-product-surface) |
+| Framer-style expressive builder page | layered composition, creative energy, dynamic hero structure | [Open recipe](stitch-ui/references/reference-inspired-prompts.md#3-framer-inspired-expressive-builder-page) |
+| Notion-style knowledge workspace | calm hierarchy, text-first usability, split-pane logic | [Open recipe](stitch-ui/references/reference-inspired-prompts.md#4-notion-inspired-knowledge-workspace) |
+| Award-site experimental microsite | stronger art direction, asymmetry, composition confidence | [Open recipe](stitch-ui/references/reference-inspired-prompts.md#5-award-site-experimental-microsite) |
+
+These recipes include:
+
+- what to study
+- a Stitch prompt
+- a Codex / Claude implementation prompt
+- what to avoid so you do not drift into copycat work
 
 ## What you get
 
@@ -205,6 +225,7 @@ Avoid generic enterprise dashboard aesthetics.
 See:
 
 - [stitch-ui/references/prompt-templates.md](stitch-ui/references/prompt-templates.md)
+- [stitch-ui/references/reference-inspired-prompts.md](stitch-ui/references/reference-inspired-prompts.md)
 
 Included:
 
@@ -212,6 +233,7 @@ Included:
 - screenshot-to-code template
 - exported-code refactor template
 - quick visual brief template
+- reference-informed prompt recipes for premium homepage, dashboard, builder, docs, and microsite scenes
 
 ## Why it works
 
