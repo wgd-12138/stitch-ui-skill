@@ -1,0 +1,5 @@
+interface:
+  display_name: "Stitch UI"
+  short_description: "Build polished UI from Stitch concepts"
+  default_prompt: "Use $stitch-ui to turn a Google Stitch concept or screenshot into a polished frontend page."
+  brand_color: "#E56A43"

@@ -1,21 +1,32 @@
 # stitch-ui
 
-`stitch-ui` is a portable skill for Claude and Codex that helps turn Google Stitch ideas, screenshots, or exported markup into polished frontend pages with a real component library.
+[![GitHub stars](https://img.shields.io/github/stars/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/stargazers)
+[![GitHub license](https://img.shields.io/github/license/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/blob/main/LICENSE)
+[![Skill](https://img.shields.io/badge/skill-Claude%20%26%20Codex-ff7a45?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill)
 
-It is built to reduce the "generic AI template" look by forcing a better flow:
+Turn Google Stitch ideas, screenshots, or exported markup into frontend pages that feel polished instead of generic.
 
-1. extract a visual brief
-2. choose a component strategy
-3. implement the page in reusable sections
-4. run a visual polish pass before stopping
+`stitch-ui` is a portable skill for Claude and Codex. Its job is simple:
 
-## Why this exists
+- extract a compact visual brief first
+- rebuild the page with a real component library
+- force one more visual polish pass before stopping
 
-Most AI-generated frontend pages can work, but they often feel flat, crowded, or interchangeable.
+That extra structure is what helps the result feel less like a default AI template.
 
-`stitch-ui` improves that by making the model lock in:
+## Why people may like it
 
-- page mood
+Most AI-generated frontend pages can run, but they often share the same problems:
+
+- too much generic SaaS styling
+- weak typography
+- crowded spacing
+- random gradients and effects
+- exported markup that is hard to maintain
+
+`stitch-ui` pushes the model to lock in:
+
+- mood
 - typography direction
 - spacing rhythm
 - color system
@@ -23,6 +34,15 @@ Most AI-generated frontend pages can work, but they often feel flat, crowded, or
 - what to avoid
 
 before it starts writing code.
+
+## What you get
+
+| Item | What it does |
+|---|---|
+| `stitch-ui/SKILL.md` | Main workflow and quality rules |
+| `stitch-ui/references/prompt-templates.md` | Ready-to-paste prompt templates |
+| Preview screenshots | Show the default visual direction |
+| Portable folder layout | Easy to drop into Claude or Codex |
 
 ## Preview
 
@@ -44,7 +64,7 @@ Copy the `stitch-ui` folder into:
 ~/.codex/skills/
 ```
 
-On Windows:
+Windows:
 
 ```text
 C:\Users\<you>\.codex\skills\
@@ -58,7 +78,7 @@ Copy the `stitch-ui` folder into:
 ~/.claude/skills/
 ```
 
-On Windows:
+Windows:
 
 ```text
 C:\Users\<you>\.claude\skills\
@@ -68,18 +88,27 @@ C:\Users\<you>\.claude\skills\
 
 ```text
 stitch-ui/
-├── SKILL.md
-└── references/
-    └── prompt-templates.md
+├── agents/
+│   └── openai.yaml
+├── references/
+│   └── prompt-templates.md
+└── SKILL.md
 ```
 
-## How to use
+## Best use cases
 
-### In Codex
+- landing pages
+- product marketing pages
+- dashboards
+- app homepages
+- pricing pages
+- feature pages
+- redesign and polish passes
+
+## How to use in Codex
 
 ```text
-Use stitch-ui skill.
-Build a landing page for an AI hiring assistant.
+Use $stitch-ui to build a landing page for an AI hiring assistant.
 Stack: Next.js + Tailwind
 Component library: shadcn/ui
 
@@ -97,32 +126,15 @@ Requirements:
 4. Do one visual polish pass after the first implementation
 ```
 
-### In Claude
+## How to use in Claude
 
 ```text
-Use stitch-ui skill.
+Use $stitch-ui.
 First generate a Google Stitch prompt for an AI finance dashboard.
 Then generate a frontend implementation prompt for React + Tailwind + shadcn/ui.
 Keep the style editorial, warm, and minimal.
 Avoid generic enterprise dashboard aesthetics.
 ```
-
-## Best use cases
-
-- landing pages
-- product marketing pages
-- dashboards
-- app homepages
-- pricing pages
-- feature pages
-- UI redesign passes
-
-## What the skill does well
-
-- turns vague design intent into a compact visual brief
-- preserves visual character instead of drifting into default AI output
-- works with screenshots, ideas, or exported code
-- encourages reusable component structure instead of noisy generated markup
 
 ## Included prompt templates
 
@@ -130,12 +142,24 @@ See:
 
 - [stitch-ui/references/prompt-templates.md](stitch-ui/references/prompt-templates.md)
 
-Templates included:
+Included:
 
 - Stitch prompt template
 - screenshot-to-code template
 - exported-code refactor template
 - quick visual brief template
+
+## Why it works
+
+This skill is intentionally strict about the order of operations:
+
+1. classify the input
+2. extract the visual brief
+3. choose the component-library strategy
+4. build the page in sections
+5. run a visual polish pass
+
+That means the model is not allowed to jump straight into "just make it pretty somehow."
 
 ## Chinese quick start
 
@@ -149,6 +173,17 @@ Templates included:
 避免：默认科技蓝模板风
 先提炼视觉简报，再写代码，最后做一轮视觉复盘。
 ```
+
+## 中文说明
+
+这个 skill 适合两种情况：
+
+| 场景 | 用法 |
+|---|---|
+| 只有产品想法 | 先让 Claude 或 Codex 生成 Google Stitch 提示词，再生成落地页面提示词 |
+| 已经有 Stitch 图稿 | 直接按截图或结构重建成真实前端页面 |
+
+它的重点不是让模型“自由发挥审美”，而是先把审美规则收紧，再让代码去服从这些规则。
 
 ## License
 
