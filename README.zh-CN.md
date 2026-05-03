@@ -36,38 +36,43 @@
 - 组件性格
 - 明确要避开的风格
 
-## 首页展示
+## 按场景展示
 
-这个 skill 的重点不是只会一种审美，而是能让不同审美都更完整、更有控制感。
+这个 skill 的价值不在于只会一种审美，而在于它能稳住很多不同的产品表面。
 
-<table>
-  <tr>
-    <td width="50%">
-      <strong>暖色杂志感首页</strong><br>
-      适合营销页 / 产品首页<br><br>
-      <img src="examples/desktop-preview.png" alt="暖色杂志感首页">
-    </td>
-    <td width="50%">
-      <strong>深色数据看板</strong><br>
-      适合高对比运营界面<br><br>
-      <img src="examples/dark-dashboard.png" alt="深色数据看板">
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <strong>轻快创作者产品</strong><br>
-      适合移动端消费类产品<br><br>
-      <img src="examples/playful-creator-app.png" alt="轻快创作者产品">
-    </td>
-    <td width="50%">
-      <strong>企业定价页</strong><br>
-      适合安静克制的 B2B 场景<br><br>
-      <img src="examples/enterprise-pricing.png" alt="企业定价页">
-    </td>
-  </tr>
-</table>
+### 1. 暖色杂志感首页
 
-暖色首页的移动端示例：
+适合产品首页和营销页。这个例子用的是更温和的配色、更大的标题和更宽松的留白。
+
+![暖色杂志感首页](examples/desktop-preview.png)
+
+### 2. 深色数据看板
+
+适合运营面板和控制台。这里会变成更高对比度、更偏数据驱动的结构。
+
+![深色数据看板](examples/dark-dashboard.png)
+
+### 3. 轻快创作者产品
+
+适合移动端消费类产品。这个例子更亮、更软，也更像 App。
+
+![轻快创作者产品](examples/playful-creator-app.png)
+
+### 4. 企业定价页
+
+适合 B2B 决策页。它会更安静、更克制，也更像采购和评估场景。
+
+![企业定价页](examples/enterprise-pricing.png)
+
+### 5. 文档工作台
+
+适合文档、知识库和研究工具。这个例子是文字优先、分栏结构，和前面几种完全不是一类。
+
+![文档工作台](examples/docs-workspace.png)
+
+### 暖色首页的移动端示例
+
+同一套审美也可以自然落到小屏幕。
 
 ![移动端示例](examples/mobile-preview.png)
 
@@ -129,6 +134,7 @@ stitch-ui/
 - 应用首页
 - 定价页
 - 功能介绍页
+- 知识工作台
 - 旧页面重设计和精修
 
 ## 在 Codex 中怎么用

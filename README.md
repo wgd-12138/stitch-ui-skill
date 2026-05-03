@@ -38,38 +38,43 @@ Most AI-generated frontend pages can run, but they often share the same problems
 
 before it starts writing code.
 
-## Showcase
+## Showcase by scene
 
-The point of this skill is not one specific aesthetic. It is the ability to keep different aesthetics intentional.
+The skill is useful because it can fit very different product surfaces without collapsing into one repeated layout.
 
-<table>
-  <tr>
-    <td width="50%">
-      <strong>Warm editorial landing page</strong><br>
-      Marketing / product homepage<br><br>
-      <img src="examples/desktop-preview.png" alt="Warm editorial landing page preview">
-    </td>
-    <td width="50%">
-      <strong>Dark analytics dashboard</strong><br>
-      High-contrast operations UI<br><br>
-      <img src="examples/dark-dashboard.png" alt="Dark analytics dashboard preview">
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <strong>Playful creator app</strong><br>
-      Mobile-first consumer product<br><br>
-      <img src="examples/playful-creator-app.png" alt="Playful creator app preview">
-    </td>
-    <td width="50%">
-      <strong>Enterprise pricing page</strong><br>
-      Quiet B2B decision-making surface<br><br>
-      <img src="examples/enterprise-pricing.png" alt="Enterprise pricing page preview">
-    </td>
-  </tr>
-</table>
+### 1. Warm editorial landing page
 
-Mobile example from the editorial landing direction:
+Best for product homepages and marketing sites. This example uses a calm warm palette, large type, generous whitespace, and a strong hero-first composition.
+
+![Warm editorial landing page](examples/desktop-preview.png)
+
+### 2. Dark analytics dashboard
+
+Best for operations tools and command-center UIs. The layout shifts into a high-contrast control surface with tighter density and data-first cards.
+
+![Dark analytics dashboard](examples/dark-dashboard.png)
+
+### 3. Playful creator app
+
+Best for mobile-first consumer products. This example uses softer shapes, brighter gradients, and a more energetic, app-like rhythm.
+
+![Playful creator app](examples/playful-creator-app.png)
+
+### 4. Enterprise pricing page
+
+Best for B2B decision pages. It becomes quieter, more structured, and more procurement-friendly, with less visual noise.
+
+![Enterprise pricing page](examples/enterprise-pricing.png)
+
+### 5. Docs workspace
+
+Best for documentation, knowledge bases, and research tools. This one is text-first, split-pane, and much more editorial than the others.
+
+![Docs workspace](examples/docs-workspace.png)
+
+### Mobile editorial view
+
+The same warm editorial direction also works on small screens.
 
 ![Mobile preview](examples/mobile-preview.png)
 
@@ -131,6 +136,7 @@ stitch-ui/
 - app homepages
 - pricing pages
 - feature pages
+- knowledge/workspace UIs
 - redesign and polish passes
 
 ## How to use in Codex

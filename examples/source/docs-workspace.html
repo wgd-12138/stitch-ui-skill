@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs Workspace Example</title>
+  <style>
+    :root {
+      --bg: #f5f2ea;
+      --surface: #fffdf9;
+      --panel: #f8f4eb;
+      --line: rgba(26, 28, 34, 0.08);
+      --text: #1b1e25;
+      --muted: #6e6b63;
+      --accent: #2f6bff;
+      --accent-soft: rgba(47, 107, 255, 0.12);
+      --code: #f4efe5;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(47,107,255,0.08), transparent 24%),
+        linear-gradient(180deg, #fbf8f2 0%, #f5f2ea 100%);
+      min-height: 100vh;
+    }
+
+    .frame {
+      width: min(1280px, calc(100% - 48px));
+      margin: 24px auto;
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(26,28,34,0.05);
+      box-shadow: 0 28px 70px rgba(44, 39, 28, 0.12);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 22px;
+      border-bottom: 1px solid rgba(26,28,34,0.06);
+      background: rgba(255,255,255,0.65);
+    }
+
+    .crumbs { color: var(--muted); font-size: 14px; }
+    .badge {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr) 290px;
+      min-height: 920px;
+    }
+
+    nav, .aside {
+      padding: 22px 18px;
+      background: rgba(248, 244, 235, 0.72);
+    }
+
+    nav {
+      border-right: 1px solid rgba(26,28,34,0.06);
+    }
+
+    .nav-item {
+      padding: 13px 14px;
+      border-radius: 16px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.45);
+    }
+
+    .nav-item.active {
+      background: white;
+      color: var(--text);
+      border: 1px solid rgba(47,107,255,0.18);
+      box-shadow: 0 10px 22px rgba(47, 107, 255, 0.08);
+    }
+
+    main {
+      padding: 26px 26px 30px;
+      background: rgba(255,255,255,0.72);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: 0 16px 34px rgba(43, 34, 20, 0.06);
+    }
+
+    .panel.hero-copy {
+      padding: 26px;
+    }
+
+    h1 {
+      margin: 14px 0 12px;
+      font-size: 58px;
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      max-width: 10ch;
+    }
+
+    p { margin: 0; color: var(--muted); line-height: 1.8; }
+
+    .meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 18px 0 0;
+    }
+
+    .meta span {
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: #f4f7ff;
+      color: #4460a8;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .panel.hero-preview {
+      padding: 18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,242,234,0.95));
+    }
+
+    .codebar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: var(--code);
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 13px;
+    }
+
+    .editor {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 14px;
+    }
+
+    .article {
+      padding: 20px;
+      border-radius: 22px;
+      background: white;
+      border: 1px solid rgba(26,28,34,0.06);
+    }
+
+    .article h2 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+
+    .article pre {
+      margin: 18px 0 0;
+      padding: 18px;
+      border-radius: 18px;
+      background: #171a22;
+      color: #d7e3ff;
+      overflow: hidden;
+      white-space: pre-wrap;
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    .notes {
+      display: grid;
+      gap: 14px;
+    }
+
+    .note {
+      padding: 18px;
+      border-radius: 22px;
+      background: var(--panel);
+      border: 1px solid rgba(26,28,34,0.06);
+    }
+
+    .note strong { display: block; margin-bottom: 8px; }
+
+    .stack {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .stack-item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(47,107,255,0.05);
+      border: 1px solid rgba(47,107,255,0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .timeline {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(26,28,34,0.06);
+    }
+
+    .aside .badge { margin-bottom: 16px; }
+
+    .aside-card {
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(26,28,34,0.06);
+      margin-bottom: 14px;
+    }
+
+    .aside-card h3 { margin: 0 0 8px; }
+    .aside-card p { font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="topbar">
+      <div class="crumbs">Docs / Knowledge / Notes</div>
+      <div class="badge">Documentation workspace</div>
+    </div>
+    <div class="layout">
+      <nav>
+        <div class="nav-item active"><span>Overview</span><span>01</span></div>
+        <div class="nav-item"><span>References</span><span>02</span></div>
+        <div class="nav-item"><span>Examples</span><span>03</span></div>
+        <div class="nav-item"><span>Changelog</span><span>04</span></div>
+        <div class="nav-item"><span>Release notes</span><span>05</span></div>
+      </nav>
+      <main>
+        <section class="hero">
+          <div class="panel hero-copy">
+            <div class="badge">Knowledge workspace</div>
+            <h1>Different enough to prove breadth.</h1>
+            <p>Not every great UI is a marketing page or a dashboard. This docs-style workspace shows that stitch-ui can also support writing surfaces, internal knowledge systems and research-heavy products.</p>
+            <div class="meta">
+              <span>split navigation</span>
+              <span>editor surface</span>
+              <span>reference panel</span>
+            </div>
+          </div>
+          <div class="panel hero-preview">
+            <div class="codebar">
+              <span>prompt.md</span>
+              <span>42 lines</span>
+            </div>
+            <div class="editor">
+              <div class="article">
+                <h2>How the skill behaves in a docs-heavy product</h2>
+                <p>A completely different composition from the other examples: the content is centered on text density, hierarchy, callouts and a practical working layout.</p>
+                <pre>
+## Visual brief
+- page type: docs workspace
+- mood: calm, focused
+- layout: three-pane knowledge tool
+- accent: blue
+- avoid: marketing-page hero language
+                </pre>
+              </div>
+              <div class="notes">
+                <div class="note">
+                  <strong>What changes here</strong>
+                  <p>Navigation sits on the left, the core content becomes editorial, and the right rail becomes a working reference area.</p>
+                </div>
+                <div class="note">
+                  <strong>Why it matters</strong>
+                  <p>The same skill now feels useful for internal docs, onboarding, and product knowledge systems, not just pretty landing pages.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="stack">
+          <div class="stack-item"><span>Formatting rules</span><span>plain + readable</span></div>
+          <div class="stack-item"><span>Code samples</span><span>compact + practical</span></div>
+          <div class="stack-item"><span>Reference notes</span><span>side-panel support</span></div>
+        </section>
+
+        <section class="timeline">
+          <div class="timeline-item">This example is intentionally text-first, unlike the homepage and pricing samples.</div>
+          <div class="timeline-item">It shows how the same skill can handle a workbench or documentation app without falling back to the same card layout.</div>
+        </section>
+      </main>
+      <aside class="aside">
+        <div class="badge">Reference mode</div>
+        <div class="aside-card">
+          <h3>Search</h3>
+          <p>Semantic lookup, tags, and quick filters.</p>
+        </div>
+        <div class="aside-card">
+          <h3>Examples</h3>
+          <p>Annotated snippets and reusable prompt patterns.</p>
+        </div>
+        <div class="aside-card">
+          <h3>Ship</h3>
+          <p>Checklist, release notes, and version history.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
