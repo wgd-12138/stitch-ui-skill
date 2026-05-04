@@ -1,0 +1,42 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate repository structure
+        run: node scripts/validate.js
+
+      - name: Install with PowerShell
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          .\install.ps1 all `
+            --codex-plugin-dir "$env:RUNNER_TEMP\codex-plugins" `
+            --codex-marketplace "$env:RUNNER_TEMP\.agents\plugins\marketplace.json" `
+            --claude-skills-dir "$env:RUNNER_TEMP\.claude\skills"
+
+      - name: Install with Bash
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          chmod +x ./install.sh
+          ./install.sh all \
+            --codex-plugin-dir "$RUNNER_TEMP/codex-plugins" \
+            --codex-marketplace "$RUNNER_TEMP/.agents/plugins/marketplace.json" \
+            --claude-skills-dir "$RUNNER_TEMP/.claude/skills"
