@@ -2,262 +2,147 @@
 
 English | [简体中文](README.zh-CN.md)
 
-[![GitHub stars](https://img.shields.io/github/stars/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/stargazers)
-[![GitHub license](https://img.shields.io/github/license/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/blob/main/LICENSE)
-[![Skill](https://img.shields.io/badge/skill-Claude%20%26%20Codex-ff7a45?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill)
-[![Portable](https://img.shields.io/badge/install-copy%20folder-blue?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill)
+`stitch-ui` is a portable distribution of the `stitch-ui` skill for Claude and Codex.
 
-An AI skill for Claude and Codex that turns Google Stitch ideas, screenshots, or exported markup into frontend pages that feel intentional instead of generic.
+It helps people turn Google Stitch ideas, screenshots, and exports into frontend pages that feel polished instead of generic.
 
-## What makes this different
+## What this repository ships
 
-Most AI-generated pages fail in the same way:
+| Package | Purpose | Path |
+|---|---|---|
+| Claude skill | Install directly into `~/.claude/skills/` | `plugins/stitch-ui/skills/stitch-ui` |
+| Codex plugin | Install into a local Codex plugin library | `plugins/stitch-ui` |
+| Repo marketplace entry | Lets Codex discover the plugin from this repo | `.agents/plugins/marketplace.json` |
 
-- one repeated SaaS template
-- weak typography
-- crowded spacing
-- decorative effects without a system
-- exported markup that is hard to maintain
+## Quick install
 
-`stitch-ui` fixes that by forcing the model to decide the visual system first:
+### Claude
+
+```bash
+python scripts/install.py claude
+```
+
+This copies the skill to:
+
+```text
+~/.claude/skills/stitch-ui
+```
+
+### Codex
+
+```bash
+python scripts/install.py codex
+```
+
+This does two things:
+
+1. copies the plugin to `~/plugins/stitch-ui`
+2. creates or updates `~/.agents/plugins/marketplace.json`
+
+### Install both
+
+```bash
+python scripts/install.py all
+```
+
+## Why the packaging is split
+
+Claude and Codex do not use the exact same distribution shape.
+
+| Platform | Recommended format |
+|---|---|
+| Claude | Skill folder under `~/.claude/skills/` |
+| Codex | Plugin folder plus marketplace entry |
+
+This repository includes both forms so users can install from one source.
+
+## Codex plugin package
+
+The Codex-ready package lives here:
+
+```text
+plugins/stitch-ui
+```
+
+Inside it:
+
+- `.codex-plugin/plugin.json`
+- `skills/stitch-ui/`
+- `assets/`
+
+If you want to use this repository as a repo-local plugin source, the plugin is already registered in:
+
+```text
+.agents/plugins/marketplace.json
+```
+
+## Claude package
+
+Claude does not currently use the same Codex plugin marketplace shape here.
+
+For Claude, the installable unit is the skill folder:
+
+```text
+plugins/stitch-ui/skills/stitch-ui
+```
+
+The install script copies that folder into the user's global Claude skills directory.
+
+## Direct install details
+
+### Codex local install layout
+
+After running:
+
+```bash
+python scripts/install.py codex
+```
+
+the resulting local layout is:
+
+```text
+~/plugins/stitch-ui
+~/.agents/plugins/marketplace.json
+```
+
+### Claude local install layout
+
+After running:
+
+```bash
+python scripts/install.py claude
+```
+
+the resulting local layout is:
+
+```text
+~/.claude/skills/stitch-ui
+```
+
+## What the skill does
+
+The bundled skill teaches a repeatable frontend flow:
 
 1. extract a compact visual brief
 2. choose the component-library strategy
 3. rebuild the page in reusable sections
 4. run a visual polish pass before stopping
 
-That extra reasoning step is what gives the output more range.
+It also includes:
 
-## Why people star this
+- prompt templates
+- reference-inspired prompt recipes
+- examples of how to borrow from admired public design without blindly copying it
 
-- it teaches a repeatable way to make AI-generated pages look better
-- it covers multiple product surfaces instead of one homepage formula
-- it includes prompt recipes, examples, and visual logic in one place
-- it helps teams learn how to reference admired public design without blindly copying it
+## For maintainers
 
-## Who this is for
-
-- people using Claude or Codex to build frontend pages
-- designers who want clearer prompt structure for Google Stitch
-- developers who can ship code but struggle to get polished visual output
-- teams that want reusable design prompting patterns instead of one-off lucky generations
-
-## Scene system at a glance
-
-| Scene | Layout archetype | Device emphasis | Visual direction | What it proves |
-|---|---|---|---|---|
-| Stripe / Framer-inspired premium homepage | Hero-first marketing layout | Desktop + mobile | warm, spacious, premium | strong homepage storytelling |
-| Linear-inspired dark analytics dashboard | Dense control surface | Desktop | high-contrast, data-first | dashboards do not need landing-page structure |
-| Framer-inspired creator mobile app | stacked app feed | Mobile-first | bright, soft, energetic | consumer mobile rhythm |
-| Calm enterprise pricing page | comparison grid | Desktop | quiet, structured, B2B | calm decision-page design |
-| Notion-inspired docs workspace | three-pane knowledge tool | Desktop | text-first, editorial, practical | research and documentation UIs |
-
-## Showcase by scene
-
-### 1. Stripe / Framer-inspired premium homepage
-
-Best for product homepages and marketing sites.
-
-- large type
-- wide whitespace
-- hero-led composition
-- quiet warm palette
-
-![Warm editorial landing page](examples/desktop-preview.png)
-
-### 2. Linear-inspired dark analytics dashboard
-
-Best for operations tools and command-center UIs.
-
-- tighter density
-- data-first card system
-- contrast-led navigation
-- high-signal information layout
-
-![Dark analytics dashboard](examples/dark-dashboard.png)
-
-### 3. Framer-inspired creator mobile app
-
-Best for mobile-first consumer products.
-
-- app-like stacking
-- brighter gradients
-- softer geometry
-- higher energy tone
-
-![Playful creator app](examples/playful-creator-app.png)
-
-### 4. Enterprise pricing page
-
-Best for B2B decision pages.
-
-- cleaner comparison structure
-- quieter accent system
-- trust-first tone
-- lower visual noise
-
-![Enterprise pricing page](examples/enterprise-pricing.png)
-
-### 5. Notion-inspired docs workspace
-
-Best for documentation, knowledge bases, and research tools.
-
-- split navigation
-- text-first content area
-- reference side panel
-- workspace-style composition
-
-![Docs workspace](examples/docs-workspace.png)
-
-### Mobile editorial view
-
-The same warm editorial direction also works on small screens.
-
-![Mobile preview](examples/mobile-preview.png)
-
-## Reference-informed prompt recipes
-
-If you want the examples to feel closer to widely admired modern product pages, study these reference families:
-
-| Reference family | What to borrow | Recipe |
-|---|---|---|
-| Stripe-style premium homepage | enterprise trust, large narrative type, modular proof sections | [Open recipe](stitch-ui/references/reference-inspired-prompts.md#1-stripe-inspired-premium-homepage) |
-| Linear-style dark product surface | sharp contrast, product density, data-first composition | [Open recipe](stitch-ui/references/reference-inspired-prompts.md#2-linear-inspired-dark-product-surface) |
-| Framer-style expressive builder page | layered composition, creative energy, dynamic hero structure | [Open recipe](stitch-ui/references/reference-inspired-prompts.md#3-framer-inspired-expressive-builder-page) |
-| Notion-style knowledge workspace | calm hierarchy, text-first usability, split-pane logic | [Open recipe](stitch-ui/references/reference-inspired-prompts.md#4-notion-inspired-knowledge-workspace) |
-| Award-site experimental microsite | stronger art direction, asymmetry, composition confidence | [Open recipe](stitch-ui/references/reference-inspired-prompts.md#5-award-site-experimental-microsite) |
-
-These recipes include:
-
-- what to study
-- a Stitch prompt
-- a Codex / Claude implementation prompt
-- what to avoid so you do not drift into copycat work
-
-## What you get
-
-| Item | What it does |
-|---|---|
-| `stitch-ui/SKILL.md` | Main workflow and quality rules |
-| `stitch-ui/references/prompt-templates.md` | Ready-to-paste prompt templates |
-| `stitch-ui/agents/openai.yaml` | UI metadata for compatible skill surfaces |
-| `examples/` | Scene-based screenshots with different layout types |
-
-## Install
-
-### Codex
-
-Copy the `stitch-ui` folder into:
+If you update the skill source in another workspace, copy the latest contents into:
 
 ```text
-~/.codex/skills/
+plugins/stitch-ui/skills/stitch-ui
 ```
 
-Windows:
-
-```text
-C:\Users\<you>\.codex\skills\
-```
-
-### Claude
-
-Copy the `stitch-ui` folder into:
-
-```text
-~/.claude/skills/
-```
-
-Windows:
-
-```text
-C:\Users\<you>\.claude\skills\
-```
-
-## Repository structure
-
-```text
-stitch-ui/
-├── agents/
-│   └── openai.yaml
-├── references/
-│   └── prompt-templates.md
-└── SKILL.md
-```
-
-## Best use cases
-
-- landing pages
-- product marketing pages
-- dashboards
-- app homepages
-- pricing pages
-- feature pages
-- knowledge/workspace UIs
-- redesign and polish passes
-
-## How to use in Codex
-
-```text
-Use $stitch-ui to build a landing page for an AI hiring assistant.
-Stack: Next.js + Tailwind
-Component library: shadcn/ui
-
-Visual direction:
-- calm
-- premium
-- strong whitespace
-- warm background
-- avoid default tech-blue SaaS style
-
-Requirements:
-1. Extract the visual brief first
-2. Implement with reusable components
-3. Make desktop and mobile both feel intentional
-4. Do one visual polish pass after the first implementation
-```
-
-## How to use in Claude
-
-```text
-Use $stitch-ui.
-First generate a Google Stitch prompt for an AI finance dashboard.
-Then generate a frontend implementation prompt for React + Tailwind + shadcn/ui.
-Keep the style editorial, warm, and minimal.
-Avoid generic enterprise dashboard aesthetics.
-```
-
-## Included prompt templates
-
-See:
-
-- [stitch-ui/references/prompt-templates.md](stitch-ui/references/prompt-templates.md)
-- [stitch-ui/references/reference-inspired-prompts.md](stitch-ui/references/reference-inspired-prompts.md)
-
-Included:
-
-- Stitch prompt template
-- screenshot-to-code template
-- exported-code refactor template
-- quick visual brief template
-- reference-informed prompt recipes for premium homepage, dashboard, builder, docs, and microsite scenes
-
-## Why it works
-
-This skill is intentionally strict about the order of operations:
-
-1. classify the input
-2. extract the visual brief
-3. choose the component-library strategy
-4. build the page in sections
-5. run a visual polish pass
-
-That means the model is not allowed to jump straight into "just make it pretty somehow."
-
-## Want the Chinese version?
-
-See:
-
-- [README.zh-CN.md](README.zh-CN.md)
+before publishing a new version of this repository.
 
 ## License
 

@@ -1,0 +1,42 @@
+{
+  "name": "stitch-ui",
+  "version": "1.0.0",
+  "description": "A portable Codex plugin and Claude/Codex skill for turning Google Stitch ideas into polished frontend pages.",
+  "author": {
+    "name": "wgd-12138",
+    "email": "7465011+wgd12138@user.noreply.gitee.com",
+    "url": "https://github.com/wgd-12138"
+  },
+  "homepage": "https://github.com/wgd-12138/stitch-ui-skill",
+  "repository": "https://github.com/wgd-12138/stitch-ui-skill",
+  "license": "MIT",
+  "keywords": [
+    "stitch",
+    "frontend",
+    "design",
+    "ui",
+    "codex",
+    "claude"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Stitch UI",
+    "shortDescription": "Build polished UI from Stitch concepts",
+    "longDescription": "Turns Google Stitch ideas, screenshots, and exports into polished frontend pages with reusable prompt recipes and scene-based guidance.",
+    "developerName": "wgd-12138",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/wgd-12138/stitch-ui-skill",
+    "defaultPrompt": [
+      "Use $stitch-ui to turn a Stitch screenshot into a polished page.",
+      "Use $stitch-ui to rebuild this UI with shadcn/ui.",
+      "Use $stitch-ui to make this landing page feel premium."
+    ],
+    "brandColor": "#E56A43",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg"
+  }
+}

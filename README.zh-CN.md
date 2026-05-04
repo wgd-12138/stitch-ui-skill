@@ -2,256 +2,145 @@
 
 [English](README.md) | 简体中文
 
-[![GitHub stars](https://img.shields.io/github/stars/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/stargazers)
-[![GitHub license](https://img.shields.io/github/license/wgd-12138/stitch-ui-skill?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill/blob/main/LICENSE)
-[![Skill](https://img.shields.io/badge/skill-Claude%20%26%20Codex-ff7a45?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill)
-[![Portable](https://img.shields.io/badge/install-copy%20folder-blue?style=flat-square)](https://github.com/wgd-12138/stitch-ui-skill)
+这是 `stitch-ui` skill 的可分发仓库版本，目的是让别人可以直接安装到 Claude 和 Codex 里使用。
 
-一个同时适用于 Claude 和 Codex 的 AI skill，用来把 Google Stitch 的想法、截图或导出结构，变成更像真实产品的前端页面，而不是默认 AI 模板页。
+它的作用是：把 Google Stitch 的想法、截图或导出结构，变成更像真实产品的前端页面，而不是默认 AI 模板页。
 
-## 它和普通“生成一个页面”有什么不同
+## 这个仓库里实际提供了什么
 
-很多 AI 生成页的问题都很像：
-
-- 总是回到同一种 SaaS 模板
-- 字体层级很弱
-- 留白和节奏不稳定
-- 特效是乱加的，不成系统
-- 导出代码难维护
-
-`stitch-ui` 的做法是先把视觉系统定下来，再写代码：
-
-1. 提炼视觉简报
-2. 选择组件库策略
-3. 按模块重建页面
-4. 最后再做一轮视觉复盘
-
-也正因为多了这层推理，生成结果的适用面会更广。
-
-## 为什么值得 star
-
-- 它不是只给你几张图，而是在教你怎样稳定做出更好看的页面
-- 它覆盖的不只是首页，还包括看板、移动端产品、定价页、文档工作台
-- 它把示例、提示词和审美逻辑放在了一起，适合直接学习
-- 它教的是“怎么借鉴公认好看的页面”，不是让你盲目模仿
-
-## 这个 skill 适合谁
-
-- 用 Claude 或 Codex 做前端页面的人
-- 想给 Google Stitch 写出更好提示词的人
-- 功能能做出来，但页面总觉得不够好看的人
-- 希望团队沉淀一套可复用审美提示词方法的人
-
-## 场景能力总览
-
-| 场景 | 页面骨架 | 设备重点 | 视觉方向 | 证明什么 |
-|---|---|---|---|---|
-| Stripe / Framer 风格高级首页 | Hero 主导型营销布局 | 桌面 + 手机 | 温暖、疏朗、高级 | 擅长官网首页叙事 |
-| Linear 风格深色数据看板 | 高密度控制台 | 桌面 | 高对比、数据优先 | 不会被迫做成首页结构 |
-| Framer 风格创作者移动产品 | App 式堆叠布局 | 手机优先 | 明亮、柔和、活泼 | 能处理消费类移动产品 |
-| 冷静型企业定价页 | 对比型定价栅格 | 桌面 | 安静、克制、B2B | 适合决策型页面 |
-| Notion 风格文档工作台 | 三栏知识工具 | 桌面 | 文字优先、编辑感、实用 | 适合文档和研究工具 |
-
-## 按场景展示
-
-### 1. Stripe / Framer 风格高级首页
-
-适合产品首页和营销页。
-
-- 大标题
-- 大留白
-- Hero 主导
-- 温和暖色系
-
-![暖色杂志感首页](examples/desktop-preview.png)
-
-### 2. Linear 风格深色数据看板
-
-适合运营面板和控制台。
-
-- 信息密度更高
-- 数据优先卡片系统
-- 导航更强
-- 布局偏控制台
-
-![深色数据看板](examples/dark-dashboard.png)
-
-### 3. Framer 风格创作者移动产品
-
-适合移动端消费类产品。
-
-- 更像 App
-- 配色更亮
-- 形状更软
-- 节奏更轻快
-
-![轻快创作者产品](examples/playful-creator-app.png)
-
-### 4. 企业定价页
-
-适合 B2B 决策页。
-
-- 对比结构更清楚
-- 强调色更克制
-- 信任感优先
-- 视觉噪音更低
-
-![企业定价页](examples/enterprise-pricing.png)
-
-### 5. Notion 风格文档工作台
-
-适合文档、知识库和研究工具。
-
-- 左侧导航
-- 中间正文
-- 右侧参考栏
-- 典型工作台结构
-
-![文档工作台](examples/docs-workspace.png)
-
-### 暖色首页的移动端示例
-
-同一套暖色审美也可以自然落到小屏幕。
-
-![移动端示例](examples/mobile-preview.png)
-
-## 参考型提示词配方
-
-如果你希望示例更接近公开公认比较好看的现代产品页面，可以直接学习这些参考族：
-
-| 参考方向 | 借什么 | 配方 |
+| 包类型 | 用途 | 路径 |
 |---|---|---|
-| Stripe 风格高级首页 | 企业信任感、大标题、模块化证明区 | [打开配方](stitch-ui/references/reference-inspired-prompts.md#1-stripe-inspired-premium-homepage) |
-| Linear 风格深色产品面 | 高对比、产品密度、数据优先布局 | [打开配方](stitch-ui/references/reference-inspired-prompts.md#2-linear-inspired-dark-product-surface) |
-| Framer 风格创意构建页 | 分层构图、创意张力、动态 Hero 结构 | [打开配方](stitch-ui/references/reference-inspired-prompts.md#3-framer-inspired-expressive-builder-page) |
-| Notion 风格知识工作台 | 冷静层级、文字优先、分栏逻辑 | [打开配方](stitch-ui/references/reference-inspired-prompts.md#4-notion-inspired-knowledge-workspace) |
-| Awwwards 风格实验型微站 | 更强的艺术指导、非对称构图、节奏冲击 | [打开配方](stitch-ui/references/reference-inspired-prompts.md#5-award-site-experimental-microsite) |
+| Claude skill | 直接装到 `~/.claude/skills/` | `plugins/stitch-ui/skills/stitch-ui` |
+| Codex plugin | 装到本地 Codex 插件库 | `plugins/stitch-ui` |
+| 仓库内 marketplace 条目 | 让 Codex 从这个仓库识别插件 | `.agents/plugins/marketplace.json` |
 
-这些配方里包含：
+## 快速安装
 
-- 该看什么
-- 一份 Stitch 提示词
-- 一份 Codex / Claude 落地提示词
-- 明确哪些地方不要照搬，避免做成模仿品
+### 安装到 Claude
 
-## 仓库里有什么
+```bash
+python scripts/install.py claude
+```
 
-| 文件 | 作用 |
+它会把 skill 复制到：
+
+```text
+~/.claude/skills/stitch-ui
+```
+
+### 安装到 Codex
+
+```bash
+python scripts/install.py codex
+```
+
+它会做两件事：
+
+1. 把插件复制到 `~/plugins/stitch-ui`
+2. 创建或更新 `~/.agents/plugins/marketplace.json`
+
+### 两边一起装
+
+```bash
+python scripts/install.py all
+```
+
+## 为什么要拆成两种包
+
+Claude 和 Codex 这里使用的分发形态并不完全一样。
+
+| 平台 | 推荐分发形态 |
 |---|---|
-| `stitch-ui/SKILL.md` | 主工作流和质量规则 |
-| `stitch-ui/references/prompt-templates.md` | 可直接复制的提示词模板 |
-| `stitch-ui/agents/openai.yaml` | 支持元数据的 skill 环境展示信息 |
-| `examples/` | 按场景组织的示例截图 |
+| Claude | `~/.claude/skills/` 下的 skill 目录 |
+| Codex | 插件目录 + marketplace 条目 |
 
-## 安装方法
+所以这个仓库把两种形态都准备好了，别人从一个仓库就能装。
+
+## Codex 插件包
+
+Codex 可安装包在这里：
+
+```text
+plugins/stitch-ui
+```
+
+里面包含：
+
+- `.codex-plugin/plugin.json`
+- `skills/stitch-ui/`
+- `assets/`
+
+如果你想把这个仓库当成 repo-local 插件源，仓库里已经带了：
+
+```text
+.agents/plugins/marketplace.json
+```
+
+## Claude 包
+
+Claude 这里没有和 Codex 完全一致的插件市场形态。
+
+对 Claude 来说，真正可安装的单元是这个 skill 目录：
+
+```text
+plugins/stitch-ui/skills/stitch-ui
+```
+
+安装脚本会把它复制到用户本地的全局技能目录里。
+
+## 安装后本地会变成什么
 
 ### Codex
 
-把 `stitch-ui` 目录复制到：
+运行：
 
-```text
-~/.codex/skills/
+```bash
+python scripts/install.py codex
 ```
 
-Windows：
+后，本地结构会变成：
 
 ```text
-C:\Users\<你自己>\.codex\skills\
+~/plugins/stitch-ui
+~/.agents/plugins/marketplace.json
 ```
 
 ### Claude
 
-把 `stitch-ui` 目录复制到：
+运行：
 
-```text
-~/.claude/skills/
+```bash
+python scripts/install.py claude
 ```
 
-Windows：
+后，本地结构会变成：
 
 ```text
-C:\Users\<你自己>\.claude\skills\
+~/.claude/skills/stitch-ui
 ```
 
-## 目录结构
+## 这个 skill 本身做什么
+
+它教的是一套稳定的前端审美工作流：
+
+1. 提炼视觉简报
+2. 选择组件库策略
+3. 按模块重建页面
+4. 最后做一轮视觉复盘
+
+并且自带：
+
+- 通用提示词模板
+- 参考型提示词配方
+- 借鉴公开优秀页面审美的方法
+
+## 如果你是维护者
+
+如果你在别的工作区更新了 skill 源内容，发布前记得把最新内容同步到：
 
 ```text
-stitch-ui/
-├── agents/
-│   └── openai.yaml
-├── references/
-│   └── prompt-templates.md
-└── SKILL.md
+plugins/stitch-ui/skills/stitch-ui
 ```
-
-## 适合哪些场景
-
-- 官网首页
-- 营销页
-- 数据看板
-- 应用首页
-- 定价页
-- 功能介绍页
-- 知识工作台
-- 旧页面重设计和精修
-
-## 在 Codex 中怎么用
-
-```text
-使用 $stitch-ui 做一个 AI 招聘产品首页。
-技术栈：Next.js + Tailwind
-组件库：shadcn/ui
-
-视觉方向：
-- 克制
-- 高级
-- 留白大
-- 暖色背景
-- 避免默认科技蓝 SaaS 模板风
-
-要求：
-1. 先提炼视觉简报
-2. 再按组件思维实现
-3. 桌面和移动端都要成立
-4. 第一版完成后再做一轮视觉复盘
-```
-
-## 在 Claude 中怎么用
-
-```text
-使用 $stitch-ui。
-先生成一个 AI 财务看板的 Google Stitch 提示词，
-再生成一份 React + Tailwind + shadcn/ui 的落地实现提示词。
-整体风格要偏编辑感、温暖、克制，
-避免通用企业后台模板味。
-```
-
-## 自带的提示词模板
-
-见：
-
-- [stitch-ui/references/prompt-templates.md](stitch-ui/references/prompt-templates.md)
-- [stitch-ui/references/reference-inspired-prompts.md](stitch-ui/references/reference-inspired-prompts.md)
-
-里面包含：
-
-- Stitch 提示词模板
-- 截图转代码模板
-- 导出代码重构模板
-- 快速视觉简报模板
-- 面向高级首页、看板、构建器、文档工作台、实验型微站的参考配方
-
-## 为什么它更稳
-
-这个 skill 对顺序要求比较严格：
-
-1. 判断输入类型
-2. 提炼视觉简报
-3. 选择组件库策略
-4. 分区块实现
-5. 再做视觉复盘
-
-也就是说，模型不能一上来就“随便做个好看的页面”。
 
 ## License
 
