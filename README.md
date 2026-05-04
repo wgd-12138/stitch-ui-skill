@@ -16,10 +16,30 @@ It helps people turn Google Stitch ideas, screenshots, and exports into frontend
 
 ## Quick install
 
-### Claude
+No Python command required.
+
+### PowerShell
+
+```powershell
+.\install.ps1 all
+```
+
+### Bash
 
 ```bash
-python scripts/install.py claude
+./install.sh all
+```
+
+### Windows CMD
+
+```bat
+install.cmd all
+```
+
+### Install only for Claude
+
+```powershell
+.\install.ps1 claude
 ```
 
 This copies the skill to:
@@ -28,22 +48,16 @@ This copies the skill to:
 ~/.claude/skills/stitch-ui
 ```
 
-### Codex
+### Install only for Codex
 
-```bash
-python scripts/install.py codex
+```powershell
+.\install.ps1 codex
 ```
 
 This does two things:
 
 1. copies the plugin to `~/plugins/stitch-ui`
 2. creates or updates `~/.agents/plugins/marketplace.json`
-
-### Install both
-
-```bash
-python scripts/install.py all
-```
 
 ## Why the packaging is split
 
@@ -94,8 +108,8 @@ The install script copies that folder into the user's global Claude skills direc
 
 After running:
 
-```bash
-python scripts/install.py codex
+```powershell
+.\install.ps1 codex
 ```
 
 the resulting local layout is:
@@ -109,8 +123,8 @@ the resulting local layout is:
 
 After running:
 
-```bash
-python scripts/install.py claude
+```powershell
+.\install.ps1 claude
 ```
 
 the resulting local layout is:
@@ -135,6 +149,12 @@ It also includes:
 - examples of how to borrow from admired public design without blindly copying it
 
 ## For maintainers
+
+Root install commands are wrappers around:
+
+```text
+scripts/install.js
+```
 
 If you update the skill source in another workspace, copy the latest contents into:
 

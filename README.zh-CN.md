@@ -16,10 +16,30 @@
 
 ## 快速安装
 
-### 安装到 Claude
+不需要再手动执行 Python 命令。
+
+### PowerShell
+
+```powershell
+.\install.ps1 all
+```
+
+### Bash
 
 ```bash
-python scripts/install.py claude
+./install.sh all
+```
+
+### Windows CMD
+
+```bat
+install.cmd all
+```
+
+### 只安装到 Claude
+
+```powershell
+.\install.ps1 claude
 ```
 
 它会把 skill 复制到：
@@ -28,22 +48,16 @@ python scripts/install.py claude
 ~/.claude/skills/stitch-ui
 ```
 
-### 安装到 Codex
+### 只安装到 Codex
 
-```bash
-python scripts/install.py codex
+```powershell
+.\install.ps1 codex
 ```
 
 它会做两件事：
 
 1. 把插件复制到 `~/plugins/stitch-ui`
 2. 创建或更新 `~/.agents/plugins/marketplace.json`
-
-### 两边一起装
-
-```bash
-python scripts/install.py all
-```
 
 ## 为什么要拆成两种包
 
@@ -94,8 +108,8 @@ plugins/stitch-ui/skills/stitch-ui
 
 运行：
 
-```bash
-python scripts/install.py codex
+```powershell
+.\install.ps1 codex
 ```
 
 后，本地结构会变成：
@@ -109,8 +123,8 @@ python scripts/install.py codex
 
 运行：
 
-```bash
-python scripts/install.py claude
+```powershell
+.\install.ps1 claude
 ```
 
 后，本地结构会变成：
@@ -135,6 +149,12 @@ python scripts/install.py claude
 - 借鉴公开优秀页面审美的方法
 
 ## 如果你是维护者
+
+根目录安装命令底层调用的是：
+
+```text
+scripts/install.js
+```
 
 如果你在别的工作区更新了 skill 源内容，发布前记得把最新内容同步到：
 
